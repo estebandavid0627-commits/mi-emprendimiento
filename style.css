@@ -67,6 +67,37 @@ section {
     margin-bottom: 10px;
 }
 
+/* Sección Testimonios */
+.testimonios-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.testimonio-card {
+    background: #ffffff;
+    border-left: 4px solid #3498db;
+    border-radius: 6px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.testimonio-card .comentario {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.testimonio-card .autor {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.9em;
+}
+
 /* Sección FAQ */
 .faq-container {
     max-width: 650px;
