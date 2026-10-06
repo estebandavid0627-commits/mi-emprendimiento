@@ -67,6 +67,33 @@ section {
     margin-bottom: 10px;
 }
 
+/* Sección FAQ */
+.faq-container {
+    max-width: 650px;
+    margin: 20px auto 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.faq-item summary {
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+.faq-item p {
+    margin-top: 10px;
+    color: #555;
+}
+
 /* Sección Contacto */
 .formulario {
     background: #ffffff;
