@@ -133,6 +133,7 @@ body {
 .gradient-text {
   background: var(--gradient-text);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -208,6 +209,7 @@ body {
   font-weight: 800;
   background: var(--gradient-text);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
