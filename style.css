@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     color: #333;
     line-height: 1.6;
@@ -45,6 +45,32 @@ section {
     margin-bottom: 40px;
 }
 
+/* Filtros del Catálogo */
+.filtros-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-filtro {
+    background-color: #e2e8f0;
+    color: #2c3e50;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+}
+
+.btn-filtro:hover, .btn-filtro.activo {
+    background-color: #3498db;
+    color: white;
+}
+
 /* Sección Servicios / Catálogo */
 .servicios-container {
     display: flex;
@@ -65,9 +91,15 @@ section {
     flex-direction: column;
     justify-content: space-between;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tarjeta .categoria {
+.tarjeta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.tarjeta .categoria, .modal-contenido .categoria {
     align-self: flex-start;
     background-color: #e8f4fc;
     color: #2980b9;
@@ -76,6 +108,7 @@ section {
     padding: 3px 8px;
     border-radius: 4px;
     margin-bottom: 8px;
+    display: inline-block;
 }
 
 .tarjeta h3 {
@@ -83,7 +116,7 @@ section {
     margin-bottom: 5px;
 }
 
-.tarjeta .precio {
+.tarjeta .precio, .modal-contenido .precio {
     font-size: 1.2em;
     font-weight: bold;
     color: #27ae60;
@@ -212,6 +245,59 @@ button:hover {
     background-color: #2980b9;
 }
 
+/* Modal Emergente */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    animation: modalAnim .3s ease-out;
+}
+
+@keyframes modalAnim {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.cerrar-modal:hover { color: #333; }
+
+.btn-modal-accion {
+    margin-top: 15px;
+    background-color: #27ae60;
+}
+
+.btn-modal-accion:hover {
+    background-color: #219653;
+}
+
 /* Botón Volver Arriba */
 #btnVolverArriba {
     display: none;
@@ -246,9 +332,7 @@ footer {
     width: 100%;
 }
 
-/* ==========================================
-   DISEÑO RESPONSIVE (MEDIA QUERIES)
-   ========================================== */
+/* Adaptabilidad Responsive */
 @media (max-width: 768px) {
     header {
         padding: 15px 10px;

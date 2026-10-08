@@ -1,4 +1,3 @@
-// Esperar a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
 
     // 1. Manejo del Formulario de Contacto
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnVolverArriba = document.getElementById("btnVolverArriba");
 
     if (btnVolverArriba) {
-        // Mostrar u ocultar el botón según la posición del scroll
         window.addEventListener("scroll", () => {
             if (window.scrollY > 300) {
                 btnVolverArriba.style.display = "block";
@@ -35,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Acción al hacer clic en el botón
         btnVolverArriba.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
@@ -46,7 +43,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-// 3. Función para ver el detalle de los servicios en el Catálogo
-function verDetalle(titulo, descripcion) {
-    alert(`📌 DETALLE DEL SERVICIO:\n\n• Servicio: ${titulo}\n• Incluye: ${descripcion}`);
+// 3. Abrir Modal de Detalle de Servicio
+function abrirModal(titulo, categoria, precio, descripcion) {
+    document.getElementById("modalTitulo").innerText = titulo;
+    document.getElementById("modalCategoria").innerText = categoria;
+    document.getElementById("modalPrecio").innerText = precio;
+    document.getElementById("modalDescripcion").innerText = descripcion;
+    document.getElementById("modalDetalle").style.display = "flex";
+}
+
+// 4. Cerrar Modal
+function cerrarModal() {
+    document.getElementById("modalDetalle").style.display = "none";
+}
+
+// 5. Acción del botón interno del Modal (Redirige y llena el Formulario)
+function seleccionarServicio() {
+    const titulo = document.getElementById("modalTitulo").innerText;
+    cerrarModal();
+    const seccionContacto = document.getElementById("contacto");
+    seccionContacto.scrollIntoView({ behavior: 'smooth' });
+    
+    const campoMensaje = document.getElementById("mensaje");
+    if(campoMensaje) {
+        campoMensaje.value = `Hola, estoy interesado en contratar el servicio: ${titulo}.`;
+        campoMensaje.focus();
+    }
+}
+
+// 6. Filtrar Servicios por Categoría
+function filtrarServicios(categoria) {
+    const tarjetas = document.querySelectorAll(".tarjeta");
+    const botones = document.querySelectorAll(".btn-filtro");
+
+    botones.forEach(btn => btn.classList.remove("activo"));
+    if (event && event.target) {
+        event.target.classList.add("activo");
+    }
+
+    tarjetas.forEach(tarjeta => {
+        if (categoria === "todos" || tarjeta.getAttribute("data-categoria") === categoria) {
+            tarjeta.style.display = "flex";
+        } else {
+            tarjeta.style.display = "none";
+        }
+    });
+}
+
+// 7. Cerrar Modal al hacer clic fuera del contenido flotante
+window.onclick = function(event) {
+    const modal = document.getElementById("modalDetalle");
+    if (event.target === modal) {
+        cerrarModal();
+    }
 }

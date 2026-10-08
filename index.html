@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Emprendimiento Digital</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -30,29 +30,38 @@
         <!-- Entregable 2: Catálogo de Servicios/Productos -->
         <section id="servicios">
             <h2>Nuestro Catálogo de Servicios</h2>
+
+            <!-- Filtros Interactivos -->
+            <div class="filtros-container">
+                <button class="btn-filtro activo" onclick="filtrarServicios('todos')">Todos</button>
+                <button class="btn-filtro" onclick="filtrarServicios('Desarrollo Web')">Desarrollo Web</button>
+                <button class="btn-filtro" onclick="filtrarServicios('Frontend')">Frontend</button>
+                <button class="btn-filtro" onclick="filtrarServicios('Consultoría')">Consultoría</button>
+            </div>
+
             <div class="servicios-container">
-                <article class="tarjeta">
+                <article class="tarjeta" data-categoria="Desarrollo Web">
                     <span class="categoria">Desarrollo Web</span>
                     <h3>Página Web Corporativa</h3>
                     <p class="precio">$250 USD</p>
                     <p>Sitio web completo, moderno y adaptable a móviles para promocionar tu marca.</p>
-                    <button class="btn-detalle" onclick="verDetalle('Página Web Corporativa', 'Incluye maquetación semántica en HTML5, estilos CSS3 personalizados, formulario de contacto e integración con redes sociales.')">Ver detalle</button>
+                    <button class="btn-detalle" onclick="abrirModal('Página Web Corporativa', 'Desarrollo Web', '$250 USD', 'Incluye maquetación semántica en HTML5, estilos personalizados, formulario de contacto, optimización SEO inicial y compatibilidad 100% con dispositivos móviles.')">Ver detalle</button>
                 </article>
 
-                <article class="tarjeta">
+                <article class="tarjeta" data-categoria="Frontend">
                     <span class="categoria">Frontend</span>
                     <h3>Tienda Virtual Básica</h3>
                     <p class="precio">$400 USD</p>
                     <p>Catálogo interactivo con carrito de compras y pasarela de pago simulada.</p>
-                    <button class="btn-detalle" onclick="verDetalle('Tienda Virtual Básica', 'Incluye panel de productos, filtros por categoría, integración con JS para gestión de carrito y responsive design.')">Ver detalle</button>
+                    <button class="btn-detalle" onclick="abrirModal('Tienda Virtual Básica', 'Frontend', '$400 USD', 'Incluye catálogo dinámico de productos, filtros avanzados, interfaz intuitiva de carrito de compras y diseño adaptable.')">Ver detalle</button>
                 </article>
 
-                <article class="tarjeta">
+                <article class="tarjeta" data-categoria="Consultoría">
                     <span class="categoria">Consultoría</span>
                     <h3>Auditoría de UI/UX</h3>
                     <p class="precio">$150 USD</p>
                     <p>Análisis exhaustivo de usabilidad y diseño visual para optimizar conversiones.</p>
-                    <button class="btn-detalle" onclick="verDetalle('Auditoría de UI/UX', 'Reporte completo de usabilidad, evaluación de diseño adaptable, optimización de velocidad y recomendaciones estratégicas.')">Ver detalle</button>
+                    <button class="btn-detalle" onclick="abrirModal('Auditoría de UI/UX', 'Consultoría', '$150 USD', 'Reporte completo de usabilidad, evaluación del embudo de conversión, pruebas de rendimiento técnico y guía de rediseño.')">Ver detalle</button>
                 </article>
             </div>
         </section>
@@ -117,6 +126,18 @@
             </form>
         </section>
     </main>
+
+    <!-- Ventana Modal Emergente Profesional -->
+    <div id="modalDetalle" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <span id="modalCategoria" class="categoria">Categoría</span>
+            <h2 id="modalTitulo">Título del Servicio</h2>
+            <p id="modalPrecio" class="precio">$0 USD</p>
+            <p id="modalDescripcion">Descripción detallada...</p>
+            <button class="btn-modal-accion" onclick="seleccionarServicio()">Solicitar este Servicio</button>
+        </div>
+    </div>
 
     <!-- Botón Volver Arriba -->
     <button id="btnVolverArriba" title="Volver arriba">↑</button>
