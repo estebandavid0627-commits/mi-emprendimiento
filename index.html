@@ -7,95 +7,121 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <header id="inicio">
+
+    <!-- Encabezado y Navegación -->
+    <header>
         <h1>Mi Emprendimiento Digital</h1>
         <nav>
             <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
+            <a href="#servicios">Catálogo</a>
             <a href="#testimonios">Testimonios</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq">Preguntas Frecuentes</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h2>Bienvenido a nuestro sitio web</h2>
-            <p>Construyendo soluciones digitales con HTML y CSS de forma sencilla y rápida.</p>
+        <!-- Sección Inicio -->
+        <section id="inicio">
+            <h2>Bienvenido a nuestra plataforma</h2>
+            <p>Transformamos ideas en productos digitales de alto impacto para potenciar tu marca en internet.</p>
         </section>
 
+        <!-- Entregable 2: Catálogo de Servicios/Productos -->
         <section id="servicios">
-            <h2>Nuestros Servicios</h2>
+            <h2>Nuestro Catálogo de Servicios</h2>
             <div class="servicios-container">
                 <article class="tarjeta">
-                    <h3>Diseño Web</h3>
-                    <p>Creación de sitios web modernos, adaptables y profesionales.</p>
+                    <span class="categoria">Desarrollo Web</span>
+                    <h3>Página Web Corporativa</h3>
+                    <p class="precio">$250 USD</p>
+                    <p>Sitio web completo, moderno y adaptable a móviles para promocionar tu marca.</p>
+                    <button class="btn-detalle" onclick="verDetalle('Página Web Corporativa', 'Incluye maquetación semántica en HTML5, estilos CSS3 personalizados, formulario de contacto e integración con redes sociales.')">Ver detalle</button>
                 </article>
+
                 <article class="tarjeta">
-                    <h3>Desarrollo Frontend</h3>
-                    <p>Maquetación e interacción con HTML5, CSS3 y JavaScript.</p>
+                    <span class="categoria">Frontend</span>
+                    <h3>Tienda Virtual Básica</h3>
+                    <p class="precio">$400 USD</p>
+                    <p>Catálogo interactivo con carrito de compras y pasarela de pago simulada.</p>
+                    <button class="btn-detalle" onclick="verDetalle('Tienda Virtual Básica', 'Incluye panel de productos, filtros por categoría, integración con JS para gestión de carrito y responsive design.')">Ver detalle</button>
                 </article>
+
                 <article class="tarjeta">
-                    <h3>Consultoría Digital</h3>
-                    <p>Asesoría para optimizar la presencia digital de tu emprendimiento.</p>
+                    <span class="categoria">Consultoría</span>
+                    <h3>Auditoría de UI/UX</h3>
+                    <p class="precio">$150 USD</p>
+                    <p>Análisis exhaustivo de usabilidad y diseño visual para optimizar conversiones.</p>
+                    <button class="btn-detalle" onclick="verDetalle('Auditoría de UI/UX', 'Reporte completo de usabilidad, evaluación de diseño adaptable, optimización de velocidad y recomendaciones estratégicas.')">Ver detalle</button>
                 </article>
             </div>
         </section>
 
+        <!-- Sección Testimonios -->
         <section id="testimonios">
             <h2>Lo que dicen nuestros clientes</h2>
             <div class="testimonios-container">
-                <div class="testimonio-card">
-                    <p class="comentario">"Excelente servicio, transformaron completamente la presencia digital de mi negocio."</p>
-                    <p class="autor">— María Rodríguez, Emprendedora</p>
-                </div>
-                <div class="testimonio-card">
-                    <p class="comentario">"Muy profesionales y rápidos en la entrega de la página web."</p>
-                    <p class="autor">— Carlos Gómez, Consultor</p>
-                </div>
+                <article class="testimonio-card">
+                    <p class="comentario">"Excelente servicio, entregaron la página a tiempo y con un diseño impecable."</p>
+                    <p class="autor">- María Rodríguez</p>
+                </article>
+
+                <article class="testimonio-card">
+                    <p class="comentario">"Súper recomendados. Atentos, profesionales y la atención fue de primera."</p>
+                    <p class="autor">- Carlos Gómez</p>
+                </article>
             </div>
         </section>
 
+        <!-- Sección FAQ (Preguntas Frecuentes) -->
         <section id="faq">
             <h2>Preguntas Frecuentes</h2>
             <div class="faq-container">
                 <details class="faq-item">
-                    <summary>¿Cuánto tiempo toma desarrollar un sitio web?</summary>
-                    <p>El tiempo promedio varía entre 1 y 3 semanas, dependiendo de la complejidad y funcionalidades requeridas.</p>
+                    <summary>¿Cuánto tiempo toma desarrollar una página web?</summary>
+                    <p>El tiempo promedio es de 1 a 2 semanas, dependiendo de la complejidad y el contenido proporcionado.</p>
                 </details>
+
                 <details class="faq-item">
-                    <summary>¿Los sitios web son adaptables a celulares?</summary>
-                    <p>Sí, todos nuestros diseños utilizan maquetación responsiva con CSS para verse bien en cualquier dispositivo.</p>
+                    <summary>¿La página web se adapta a teléfonos celulares?</summary>
+                    <p>¡Sí! Todos nuestros diseños son 100% responsivos y se adaptan a cualquier pantalla (smartphones, tablets y computadoras).</p>
                 </details>
+
                 <details class="faq-item">
-                    <summary>¿Ofrecen mantenimiento posterior?</summary>
-                    <p>Ofrecemos planes de soporte y actualización continua según las necesidades de tu proyecto.</p>
+                    <summary>¿Ofrecen mantenimiento y soporte técnico?</summary>
+                    <p>Ofrecemos planes de soporte mensual para actualización de contenidos, copias de seguridad y mantenimiento preventivo.</p>
                 </details>
             </div>
         </section>
 
+        <!-- Sección Contacto -->
         <section id="contacto">
             <h2>Contáctanos</h2>
-            <form class="formulario">
+            <form class="formulario" id="formularioContacto">
                 <div class="campo">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
                 </div>
+
                 <div class="campo">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
                 </div>
+
                 <div class="campo">
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+                    <label for="mensaje">Mensaje o solicitud:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
                 </div>
+
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </section>
     </main>
 
+    <!-- Botón Volver Arriba -->
     <button id="btnVolverArriba" title="Volver arriba">↑</button>
 
+    <!-- Pie de página -->
     <footer>
         <p>&copy; 2026 Mi Emprendimiento Digital. Todos los derechos reservados.</p>
     </footer>
