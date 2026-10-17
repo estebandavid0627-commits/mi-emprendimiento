@@ -32,6 +32,7 @@
         <a href="#metodologia">Metodología</a>
         <a href="#impacto">Impacto</a>
         <a href="#contacto" class="btn-nav">Agendar Diagnóstico</a>
+        <a href="#" id="openLoginBtn" class="login-link"><i data-lucide="lock"></i> Admin</a>
       </nav>
     </div>
   </header>
@@ -169,6 +170,25 @@
   <footer class="main-footer">
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Modal de Login / Panel Admin -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal-card">
+      <button id="closeLoginBtn" class="close-modal">&times;</button>
+      <div class="modal-header">
+        <span class="sub-title">Portal Corporativo</span>
+        <h2>Acceso Administrativo</h2>
+        <p>Ingresa tus credenciales para acceder a la consola de Orion.</p>
+      </div>
+
+      <form id="loginForm" class="cta-form">
+        <input type="text" id="adminUser" placeholder="Usuario o Email Corporativo" required>
+        <input type="password" id="adminPass" placeholder="Contraseña" required>
+        <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
+        <p id="loginStatus" class="form-status-msg"></p>
+      </form>
+    </div>
+  </div>
 
   <script src="main.js"></script>
   <script>
