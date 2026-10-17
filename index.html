@@ -134,14 +134,33 @@
     </div>
   </section>
 
-  <!-- Sección de Contacto Directo -->
+  <!-- Sección de Contacto Directo con Formspree Real -->
   <section id="contacto" class="cta-section">
     <div class="cta-box">
       <h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
       <p>Cuéntanos sobre tus metas y te responderemos con una propuesta personalizada estructurada a tus necesidades.</p>
-      <form class="cta-form" onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! El equipo de Orion Digital Partners te contactará pronto.');">
-        <input type="email" placeholder="Tu correo corporativo o personal" required>
-        <button type="submit" class="btn-primary">Enviar Consulta</button>
+      
+      <!-- Formulario conectado a Formspree -->
+      <form class="cta-form" id="formularioContacto" action="https://formspree.io/f/xeaevyvq" method="POST">
+        <div class="form-group-grid">
+          <input type="text" name="nombre" placeholder="Nombre completo o empresa" required>
+          <input type="email" name="email" placeholder="Tu correo corporativo" required>
+        </div>
+        
+        <select name="servicio" class="form-select" required>
+          <option value="" disabled selected>Selecciona el área de interés</option>
+          <option value="Desarrollo Web & Software">Desarrollo Web & Software</option>
+          <option value="Análisis & Estrategia">Análisis & Estrategia</option>
+          <option value="Optimizaciones & Procesos">Optimizaciones & Procesos</option>
+          <option value="Otro">Otro / Consulta General</option>
+        </select>
+
+        <textarea name="mensaje" rows="4" placeholder="Describe brevemente tus requerimientos u objetivos..." required></textarea>
+
+        <button type="submit" id="btnEnviar" class="btn-primary btn-block">Enviar Consulta</button>
+
+        <!-- Mensaje de confirmación dinámico -->
+        <p id="form-status" class="form-status-msg"></p>
       </form>
     </div>
   </section>
@@ -151,6 +170,7 @@
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
 
+  <script src="main.js"></script>
   <script>
     lucide.createIcons();
   </script>
