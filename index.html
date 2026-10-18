@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <!-- Las tarjetas se insertarán dinámicamente desde servicios.json -->
+    <!-- Las tarjetas se insertarán dinámicamente desde el archivo JSON -->
     <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
@@ -173,6 +173,37 @@
         <input type="password" id="adminPass" placeholder="Contraseña" required>
         <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
         <p id="loginStatus" class="form-status-msg"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- WIDGET CHATBOT DE IA -->
+  <div class="chatbot-wrapper">
+    <button id="chatbotToggleBtn" class="chatbot-toggle-btn" aria-label="Abrir Asistente Virtual">
+      <i data-lucide="bot"></i>
+    </button>
+
+    <div id="chatbotBox" class="chatbot-box">
+      <div class="chatbot-header">
+        <div class="chatbot-title">
+          <i data-lucide="sparkles"></i>
+          <div>
+            <h4>Orion AI Advisor</h4>
+            <span class="online-status">En línea</span>
+          </div>
+        </div>
+        <button id="chatbotCloseBtn" class="close-chatbot">&times;</button>
+      </div>
+
+      <div id="chatbotMessages" class="chatbot-messages">
+        <div class="chat-msg bot-msg">
+          <p>¡Hola! Soy el asistente virtual de <strong>Orion Digital Partners</strong>. ¿En qué puedo ayudarte hoy o qué servicio estás buscando?</p>
+        </div>
+      </div>
+
+      <form id="chatbotForm" class="chatbot-input-area">
+        <input type="text" id="chatbotInput" placeholder="Escribe tu consulta..." required autocomplete="off">
+        <button type="submit"><i data-lucide="send"></i></button>
       </form>
     </div>
   </div>

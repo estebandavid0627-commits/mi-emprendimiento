@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  // 1. CARGA DINÁMICA DEL CATÁLOGO DESDE JSON
+  // 1. CARGA DINÁMICA DEL CATÁLOGO DESDE JSON (config.json / servicios.json)
   const serviciosContainer = document.getElementById("serviciosContainer");
   const filterButtons = document.querySelectorAll(".filter-btn");
   let serviciosData = [];
 
   async function cargarServicios() {
     try {
-      const response = await fetch("config.json");
+      let response = await fetch("config.json");
+      if (!response.ok) {
+        response = await fetch("servicios.json");
+      }
       if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
       
       serviciosData = await response.json();
@@ -44,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       serviciosContainer.appendChild(card);
     });
 
-    // Re-inicializar iconos de Lucide para elementos inyectados en el DOM
     if (window.lucide) {
       lucide.createIcons();
     }
@@ -153,6 +155,68 @@ document.addEventListener("DOMContentLoaded", () => {
         loginStatus.innerHTML = "Credenciales incorrectas. Intenta con admin@orion.com / orion2026";
       }
     });
+  }
+
+  // 4. LÓGICA DEL ASISTENTE VIRTUAL / CHATBOT CON IA
+  const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
+  const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
+  const chatbotBox = document.getElementById("chatbotBox");
+  const chatbotForm = document.getElementById("chatbotForm");
+  const chatbotInput = document.getElementById("chatbotInput");
+  const chatbotMessages = document.getElementById("chatbotMessages");
+
+  if (chatbotToggleBtn && chatbotBox && chatbotCloseBtn) {
+    chatbotToggleBtn.addEventListener("click", () => {
+      chatbotBox.classList.toggle("active");
+    });
+
+    chatbotCloseBtn.addEventListener("click", () => {
+      chatbotBox.classList.remove("active");
+    });
+  }
+
+  if (chatbotForm) {
+    chatbotForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userText = chatbotInput.value.trim();
+      if (!userText) return;
+
+      appendMessage(userText, "user-msg");
+      chatbotInput.value = "";
+
+      setTimeout(() => {
+        const botReply = procesarConsultaIA(userText);
+        appendMessage(botReply, "bot-msg");
+      }, 500);
+    });
+  }
+
+  function appendMessage(text, className) {
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `chat-msg ${className}`;
+    msgDiv.innerHTML = `<p>${text}</p>`;
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function procesarConsultaIA(consulta) {
+    const texto = consulta.toLowerCase();
+
+    if (texto.includes("web") || texto.includes("software") || texto.includes("página") || texto.includes("desarrollo")) {
+      return "En **Desarrollo Web & Software** construimos plataformas modernas y escalables. Puedes agendar una sesión en nuestro formulario de contacto.";
+    } else if (texto.includes("dato") || texto.includes("analitica") || texto.includes("estrategia")) {
+      return "En **Análisis & Estrategia**, creamos tableros BI y modelos econométricos para potenciar decisiones clave de negocio.";
+    } else if (texto.includes("seguridad") || texto.includes("hack") || texto.includes("proteger")) {
+      return "Nuestra área de **Seguridad** implementa modelos Zero-Trust para garantizar inmutabilidad y protección de tus datos.";
+    } else if (texto.includes("automatiz") || texto.includes("proceso") || texto.includes("rpa")) {
+      return "Con **Optimización de Procesos**, automatizamos flujos de trabajo clave para incrementar la eficiencia operativa hasta 2.5x.";
+    } else if (texto.includes("hola") || texto.includes("buenos") || texto.includes("saludos")) {
+      return "¡Hola! ¿En qué área de consultoría digital o desarrollo podemos colaborarte hoy?";
+    } else if (texto.includes("precio") || texto.includes("costo") || texto.includes("cotiz")) {
+      return "Diseñamos soluciones a la medida. Envíanos un mensaje en el formulario para coordinar un diagnóstico gratuito.";
+    } else {
+      return "En Orion Digital Partners ofrecemos consultoría en software, datos, seguridad y automatización. ¿Te gustaría agendar una reunión corporativa?";
+    }
   }
 
 });
