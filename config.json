@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "titulo": "Desarrollo Web & Software",
+    "categoria": "Desarrollo",
+    "icono": "code-2",
+    "descripcion": "Plataformas sólidas, rápidas y seguras construidas con arquitecturas modernas y escalables.",
+    "detalles": [
+      "Aplicaciones Web Progresivas (PWA)",
+      "APIs RESTful & GraphQL",
+      "Sistemas Cloud Native"
+    ]
+  },
+  {
+    "id": 2,
+    "titulo": "Análisis & Estrategia de Datos",
+    "categoria": "Estrategia",
+    "icono": "bar-chart-3",
+    "descripcion": "Modelado de datos avanzados y analítica predictiva para la toma de decisiones financieras.",
+    "detalles": [
+      "Tableros BI interactivos",
+      "Modelado Econométrico",
+      "Auditoría de Datos"
+    ]
+  },
+  {
+    "id": 3,
+    "titulo": "Optimización de Procesos",
+    "categoria": "Automatización",
+    "icono": "cpu",
+    "descripcion": "Implementación de pipelines de software para automatizar flujos de trabajo corporativos.",
+    "detalles": [
+      "Automatización RPA",
+      "Integración de herramientas",
+      "Reducción de latencia operativa"
+    ]
+  },
+  {
+    "id": 4,
+    "titulo": "Seguridad & Ciberarquitectura",
+    "categoria": "Seguridad",
+    "icono": "shield-check",
+    "descripcion": "Protección de infraestructura digital, políticas de acceso estricto e inmutabilidad de datos.",
+    "detalles": [
+      "Auditoría de vulnerabilidades",
+      "Implementación Zero-Trust",
+      "Protección de endpoints"
+    ]
+  }
+]

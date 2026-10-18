@@ -1,5 +1,75 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // LÓGICA DE ENVÍO DE FORMULARIO DE CONTACTO
+  
+  // 1. CARGA DINÁMICA DEL CATÁLOGO DESDE JSON
+  const serviciosContainer = document.getElementById("serviciosContainer");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  let serviciosData = [];
+
+  async function cargarServicios() {
+    try {
+      const response = await fetch("config.json");
+      if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
+      
+      serviciosData = await response.json();
+      renderizarServicios(serviciosData);
+    } catch (error) {
+      console.error("Error cargando los servicios:", error);
+      if (serviciosContainer) {
+        serviciosContainer.innerHTML = `<p class="form-status-msg error">Error al cargar el catálogo de servicios.</p>`;
+      }
+    }
+  }
+
+  function renderizarServicios(servicios) {
+    if (!serviciosContainer) return;
+    
+    serviciosContainer.innerHTML = "";
+
+    servicios.forEach(servicio => {
+      const card = document.createElement("div");
+      card.className = "glass-card";
+
+      const detallesHTML = servicio.detalles 
+        ? `<ul class="service-details-list">${servicio.detalles.map(d => `<li>${d}</li>`).join('')}</ul>` 
+        : '';
+
+      card.innerHTML = `
+        <div class="icon-wrapper"><i data-lucide="${servicio.icono}"></i></div>
+        <h3>${servicio.titulo}</h3>
+        <p>${servicio.descripcion}</p>
+        ${detallesHTML}
+        <div class="card-footer-link">Ver alcance <i data-lucide="chevron-right"></i></div>
+      `;
+
+      serviciosContainer.appendChild(card);
+    });
+
+    // Re-inicializar iconos de Lucide para elementos inyectados en el DOM
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  }
+
+  // Filtrado de servicios
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const categoria = btn.getAttribute("data-category");
+      if (categoria === "Todos") {
+        renderizarServicios(serviciosData);
+      } else {
+        const filtrados = serviciosData.filter(s => s.categoria === categoria);
+        renderizarServicios(filtrados);
+      }
+    });
+  });
+
+  // Carga inicial
+  cargarServicios();
+
+  // 2. FORMULARIO DE CONTACTO (FORMSPREE)
   const form = document.getElementById("formularioContacto");
   const status = document.getElementById("form-status");
   const btnEnviar = document.getElementById("btnEnviar");
@@ -18,9 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const response = await fetch(form.action, {
           method: "POST",
           body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
+          headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
@@ -30,11 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           const result = await response.json();
           status.className = "form-status-msg error";
-          if (result && result.errors) {
-            status.innerHTML = result.errors.map(error => error.message).join(", ");
-          } else {
-            status.innerHTML = "Hubo un inconveniente al enviar la consulta. Inténtalo de nuevo.";
-          }
+          status.innerHTML = (result && result.errors) 
+            ? result.errors.map(e => e.message).join(", ") 
+            : "Hubo un inconveniente al enviar la consulta.";
         }
       } catch (error) {
         status.className = "form-status-msg error";
@@ -45,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // LÓGICA DEL MODAL DE LOGIN / ADMIN
+  // 3. MODAL DE LOGIN / ADMIN
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
@@ -63,9 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     loginModal.addEventListener("click", (e) => {
-      if (e.target === loginModal) {
-        loginModal.classList.remove("active");
-      }
+      if (e.target === loginModal) loginModal.classList.remove("active");
     });
   }
 
@@ -90,4 +154,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 });

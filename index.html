@@ -60,7 +60,7 @@
     </div>
   </section>
 
-  <!-- Métricas de Impacto (Estilo Stripe/Salesforce) -->
+  <!-- Métricas de Impacto -->
   <section id="impacto" class="stats-section">
     <div class="stats-grid">
       <div class="stat-card">
@@ -78,38 +78,27 @@
     </div>
   </section>
 
-  <!-- Servicios / Soluciones Enterprise -->
+  <!-- Catálogo Dinámico de Servicios (DOM + JSON) -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
       <h2>Soluciones diseñadas para escala global</h2>
-    </div>
-
-    <div class="cards-grid">
-      <div class="glass-card">
-        <div class="icon-wrapper"><i data-lucide="code-2"></i></div>
-        <h3>Desarrollo Web & Software</h3>
-        <p>Plataformas sólidas, rápidas y seguras construidas con las últimas tecnologías del mercado.</p>
-        <div class="card-footer-link">Ver alcance <i data-lucide="chevron-right"></i></div>
-      </div>
-
-      <div class="glass-card">
-        <div class="icon-wrapper"><i data-lucide="bar-chart-3"></i></div>
-        <h3>Análisis & Estrategia</h3>
-        <p>Modelado de datos y diagnóstico profundo para la toma de decisiones financieras y operativas.</p>
-        <div class="card-footer-link">Ver alcance <i data-lucide="chevron-right"></i></div>
-      </div>
-
-      <div class="glass-card">
-        <div class="icon-wrapper"><i data-lucide="cpu"></i></div>
-        <h3>Optimizaciones & Procesos</h3>
-        <p>Implementación de herramientas digitales para automatizar flujos de trabajo clave.</p>
-        <div class="card-footer-link">Ver alcance <i data-lucide="chevron-right"></i></div>
+      
+      <!-- Filtros de Categorías Dinámicos -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-category="Todos">Todos</button>
+        <button class="filter-btn" data-category="Desarrollo">Desarrollo</button>
+        <button class="filter-btn" data-category="Estrategia">Estrategia</button>
+        <button class="filter-btn" data-category="Automatización">Automatización</button>
+        <button class="filter-btn" data-category="Seguridad">Seguridad</button>
       </div>
     </div>
+
+    <!-- Las tarjetas se insertarán dinámicamente desde servicios.json -->
+    <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
-  <!-- Metodología de Trabajo (Estilo Consultoría McKinsey/Accenture) -->
+  <!-- Metodología de Trabajo -->
   <section id="metodologia" class="process-section">
     <div class="section-header">
       <span class="sub-title">Nuestro Proceso</span>
@@ -135,13 +124,12 @@
     </div>
   </section>
 
-  <!-- Sección de Contacto Directo con Formspree Real -->
+  <!-- Sección de Contacto -->
   <section id="contacto" class="cta-section">
     <div class="cta-box">
       <h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
       <p>Cuéntanos sobre tus metas y te responderemos con una propuesta personalizada estructurada a tus necesidades.</p>
       
-      <!-- Formulario conectado a Formspree -->
       <form class="cta-form" id="formularioContacto" action="https://formspree.io/f/xeaevyvq" method="POST">
         <div class="form-group-grid">
           <input type="text" name="nombre" placeholder="Nombre completo o empresa" required>
@@ -160,7 +148,6 @@
 
         <button type="submit" id="btnEnviar" class="btn-primary btn-block">Enviar Consulta</button>
 
-        <!-- Mensaje de confirmación dinámico -->
         <p id="form-status" class="form-status-msg"></p>
       </form>
     </div>
