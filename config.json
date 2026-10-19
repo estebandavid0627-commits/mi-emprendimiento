@@ -4,47 +4,127 @@
     "titulo": "Desarrollo Web & Software",
     "categoria": "Desarrollo",
     "icono": "code-2",
+    "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
     "descripcion": "Plataformas sólidas, rápidas y seguras construidas con arquitecturas modernas y escalables.",
     "detalles": [
       "Aplicaciones Web Progresivas (PWA)",
       "APIs RESTful & GraphQL",
       "Sistemas Cloud Native"
-    ]
+    ],
+    "tiempoEstimado": "4 - 8 Semanas",
+    "casosUso": "SaaS corporativos, portales de clientes y plataformas e-commerce B2B de alto tráfico.",
+    "entregables": ["Código fuente documentado", "Despliegue CI/CD automatizado", "Pruebas unitarias e integración"]
   },
   {
     "id": 2,
     "titulo": "Análisis & Estrategia de Datos",
     "categoria": "Estrategia",
     "icono": "bar-chart-3",
+    "imagen": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     "descripcion": "Modelado de datos avanzados y analítica predictiva para la toma de decisiones financieras.",
     "detalles": [
       "Tableros BI interactivos",
       "Modelado Econométrico",
       "Auditoría de Datos"
-    ]
+    ],
+    "tiempoEstimado": "3 - 6 Semanas",
+    "casosUso": "Dirección financiera, inteligencia de mercado y monitoreo de KPIs en tiempo real.",
+    "entregables": ["Modelos dimensionales de datos", "Dashboards en PowerBI / Tableau / Web", "Reportes econométricos"]
   },
   {
     "id": 3,
-    "titulo": "Optimización de Procesos",
+    "titulo": "Optimización & Pipelines RPA",
     "categoria": "Automatización",
     "icono": "cpu",
+    "imagen": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     "descripcion": "Implementación de pipelines de software para automatizar flujos de trabajo corporativos.",
     "detalles": [
       "Automatización RPA",
       "Integración de herramientas",
       "Reducción de latencia operativa"
-    ]
+    ],
+    "tiempoEstimado": "2 - 5 Semanas",
+    "casosUso": "Procesamiento masivo de facturación, sincronización CRM-ERP y extracción de datos.",
+    "entregables": ["Bots de automatización autónomos", "Documentación de procesos as-is / to-be", "Monitoring logs"]
   },
   {
     "id": 4,
     "titulo": "Seguridad & Ciberarquitectura",
     "categoria": "Seguridad",
     "icono": "shield-check",
+    "imagen": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
     "descripcion": "Protección de infraestructura digital, políticas de acceso estricto e inmutabilidad de datos.",
     "detalles": [
       "Auditoría de vulnerabilidades",
       "Implementación Zero-Trust",
       "Protección de endpoints"
-    ]
+    ],
+    "tiempoEstimado": "2 - 4 Semanas",
+    "casosUso": "Banca, fintech, salud y empresas que manejan información confidencial de clientes.",
+    "entregables": ["Informe de penetración & análisis de riesgos", "Políticas IAM Zero-Trust", "Parcheo de brechas crítico"]
+  },
+  {
+    "id": 5,
+    "titulo": "Arquitectura Cloud & DevOps",
+    "categoria": "Desarrollo",
+    "icono": "layers",
+    "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "descripcion": "Migración, orquestación de contenedores y optimización de infraestructura en AWS, GCP o Azure.",
+    "detalles": [
+      "Infraestructura como Código (Terraform)",
+      "Orquestación con Kubernetes & Docker",
+      "Monitoreo de Costos Cloud"
+    ],
+    "tiempoEstimado": "4 - 7 Semanas",
+    "casosUso": "Sistemas monolíticos en migración a microservicios con alta disponibilidad.",
+    "entregables": ["Pipelines CI/CD", "Scripts IaC en Git", "Configuración de Auto-scaling"]
+  },
+  {
+    "id": 6,
+    "titulo": "Consultoría BI & Executive Dashboards",
+    "categoria": "Estrategia",
+    "icono": "bar-chart-3",
+    "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    "descripcion": "Visualización estratégica para comités ejecutivos y análisis de rentabilidad por unidad de negocio.",
+    "detalles": [
+      "Consolidación de Fuentes Hetereogéneas",
+      "KPIs de Margen Operativo & CAC/LTV",
+      "Alertas Automatizadas de Gestión"
+    ],
+    "tiempoEstimado": "3 - 5 Semanas",
+    "casosUso": "Juntas directivas que requieren visibilidad unificada de ventas, gastos y proyecciones.",
+    "entregables": ["Cuadro de mando integral web", "Conectores SQL/APIs automáticos", "Capacitación de uso"]
+  },
+  {
+    "id": 7,
+    "titulo": "Integración de IA & LLMs Empresariales",
+    "categoria": "Automatización",
+    "imagen": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    "icono": "cpu",
+    "descripcion": "Agentes conversacionales customizados, búsqueda semántica (RAG) y automatización con IA.",
+    "detalles": [
+      "Asistentes Virtuales sobre Documentación Interna (RAG)",
+      "Procesamiento de Lenguaje Natural (NLP)",
+      "Fine-tuning de Modelos"
+    ],
+    "tiempoEstimado": "3 - 6 Semanas",
+    "casosUso": "Atención a clientes 24/7, asistentes de soporte técnico interno e investigación automatizada.",
+    "entregables": ["Agente conversacional embebible", "Base de conocimientos vectorial", "API endpoint de inferencia"]
+  },
+  {
+    "id": 8,
+    "titulo": "Pentesting & Cumplimiento Normativo",
+    "categoria": "Seguridad",
+    "icono": "shield-check",
+    "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+    "descripcion": "Simulación de ataques éticos y auditoría técnica bajo normas de seguridad internacional.",
+    "detalles": [
+      "Pruebas de Penetración OWASP Top 10",
+      "Evaluación de Seguridad Web & Móvil",
+      "Análisis de Configuración de Red"
+    ],
+    "tiempoEstimado": "2 - 4 Semanas",
+    "casosUso": "Prevención de filtraciones de datos y cumplimiento para certificación de auditores.",
+    "entregables": ["Reporte Ejecutivo & Técnico detallado", "Re-testing tras correcciones", "Certificado de auditoría"]
   }
 ]

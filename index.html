@@ -78,7 +78,7 @@
     </div>
   </section>
 
-  <!-- Catálogo Dinámico de Servicios (DOM + JSON + localStorage) -->
+  <!-- Catálogo Dinámico de Servicios (DOM + JSON) -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
@@ -132,19 +132,24 @@
       
       <form class="cta-form" id="formularioContacto" action="https://formspree.io/f/xeaevyvq" method="POST">
         <div class="form-group-grid">
-          <input type="text" name="nombre" placeholder="Nombre completo o empresa" required>
-          <input type="email" name="email" placeholder="Tu correo corporativo" required>
+          <input type="text" name="nombre" id="formNombre" placeholder="Nombre completo o empresa" required>
+          <input type="email" name="email" id="formEmail" placeholder="Tu correo corporativo" required>
         </div>
         
-        <select name="servicio" class="form-select" required>
+        <select name="servicio" id="formServicioSelect" class="form-select" required>
           <option value="" disabled selected>Selecciona el área de interés</option>
           <option value="Desarrollo Web & Software">Desarrollo Web & Software</option>
-          <option value="Análisis & Estrategia">Análisis & Estrategia</option>
-          <option value="Optimizaciones & Procesos">Optimizaciones & Procesos</option>
-          <option value="Otro">Otro / Consulta General</option>
+          <option value="Análisis & Estrategia de Datos">Análisis & Estrategia de Datos</option>
+          <option value="Optimización & Pipelines RPA">Optimización & Pipelines RPA</option>
+          <option value="Seguridad & Ciberarquitectura">Seguridad & Ciberarquitectura</option>
+          <option value="Arquitectura Cloud & DevOps">Arquitectura Cloud & DevOps</option>
+          <option value="Consultoría BI & Executive Dashboards">Consultoría BI & Executive Dashboards</option>
+          <option value="Integración de IA & LLMs Empresariales">Integración de IA & LLMs Empresariales</option>
+          <option value="Pentesting & Cumplimiento Normativo">Pentesting & Cumplimiento Normativo</option>
+          <option value="Otro / Consulta General">Otro / Consulta General</option>
         </select>
 
-        <textarea name="mensaje" rows="4" placeholder="Describe brevemente tus requerimientos u objetivos..." required></textarea>
+        <textarea name="mensaje" id="formMensaje" rows="4" placeholder="Describe brevemente tus requerimientos u objetivos..." required></textarea>
 
         <button type="submit" id="btnEnviar" class="btn-primary btn-block">Enviar Consulta</button>
 
@@ -157,6 +162,14 @@
   <footer class="main-footer">
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- MODAL DE DETALLE DEL SERVICIO (AL HACER CLIC EN 'VER ALCANCE') -->
+  <div id="serviceDetailModal" class="modal-overlay">
+    <div class="modal-card modal-large">
+      <button id="closeDetailBtn" class="close-modal">&times;</button>
+      <div id="serviceDetailContent"></div>
+    </div>
+  </div>
 
   <!-- Modal de Login / Panel Admin (CRUD) -->
   <div id="loginModal" class="modal-overlay">
@@ -179,7 +192,7 @@
         </form>
       </div>
 
-      <!-- VISTA 2: PANEL DE GESTIÓN CRUD (ADMIN DASHBOARD) -->
+      <!-- VISTA 2: PANEL DE GESTIÓN CRUD -->
       <div id="adminDashboardView" style="display: none;">
         <div class="modal-header">
           <div class="admin-header-flex">
@@ -191,7 +204,6 @@
           </div>
         </div>
 
-        <!-- Formulario para Agregar Nuevo Servicio -->
         <form id="addServiceForm" class="admin-crud-form">
           <h4>Agregar Nuevo Servicio</h4>
           <input type="text" id="newTitle" placeholder="Título del servicio" required>
@@ -213,12 +225,12 @@
           </div>
 
           <textarea id="newDesc" rows="2" placeholder="Descripción breve..." required></textarea>
-          <input type="text" id="newDetails" placeholder="Detalles (separados por coma, ej: PWA, APIs, Cloud)">
+          <input type="text" id="newDetails" placeholder="Detalles (separados por coma)">
+          <input type="url" id="newImg" placeholder="URL de Imagen opcional (HTTPS)">
           
           <button type="submit" class="btn-primary btn-block"><i data-lucide="plus-circle"></i> Guardar Servicio</button>
         </form>
 
-        <!-- Lista para eliminar servicios existentes -->
         <div class="admin-services-list">
           <h4>Servicios Publicados</h4>
           <div id="adminServicesContainer" class="admin-items-scroll"></div>
@@ -228,7 +240,7 @@
     </div>
   </div>
 
-  <!-- WIDGET CHATBOT DE IA -->
+  <!-- WIDGET CHATBOT DE IA POTENCIADO CON SUGERENCIAS RÁPIDAS -->
   <div class="chatbot-wrapper">
     <button id="chatbotToggleBtn" class="chatbot-toggle-btn" aria-label="Abrir Asistente Virtual">
       <i data-lucide="bot"></i>
@@ -248,12 +260,19 @@
 
       <div id="chatbotMessages" class="chatbot-messages">
         <div class="chat-msg bot-msg">
-          <p>¡Hola! Soy el asistente virtual de <strong>Orion Digital Partners</strong>. ¿En qué puedo ayudarte hoy o qué servicio estás buscando?</p>
+          <p>¡Hola! Soy <strong>Orion AI Advisor</strong>. ¿En qué solución o requerimiento técnico te puedo orientar hoy?</p>
         </div>
       </div>
 
+      <!-- Chips de sugerencias rápidas -->
+      <div class="chatbot-quick-chips">
+        <button class="chip-btn" data-query="Quiero cotizar software PWA">💻 Software PWA</button>
+        <button class="chip-btn" data-query="¿Cómo integran IA en mi empresa?">🤖 Integración IA</button>
+        <button class="chip-btn" data-query="¿Qué incluye la ciberseguridad?">🛡️ Ciberseguridad</button>
+      </div>
+
       <form id="chatbotForm" class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="Escribe tu consulta..." required autocomplete="off">
+        <input type="text" id="chatbotInput" placeholder="Pregunta sobre servicios, tiempos..." required autocomplete="off">
         <button type="submit"><i data-lucide="send"></i></button>
       </form>
     </div>
