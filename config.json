@@ -1,130 +1,182 @@
 [
   {
     "id": 1,
-    "titulo": "Desarrollo Web & Software",
+    "titulo": "Desarrollo Web & Software a Medida",
     "categoria": "Desarrollo",
     "icono": "code-2",
-    "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Plataformas sólidas, rápidas y seguras construidas con arquitecturas modernas y escalables.",
+    "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Arquitecturas de software robustas, escalables y de ultra-baja latencia para empresas líderes.",
     "detalles": [
       "Aplicaciones Web Progresivas (PWA)",
-      "APIs RESTful & GraphQL",
-      "Sistemas Cloud Native"
+      "APIs RESTful, GraphQL & Microservicios",
+      "Sistemas Cloud Native & Serveless"
     ],
     "tiempoEstimado": "4 - 8 Semanas",
-    "casosUso": "SaaS corporativos, portales de clientes y plataformas e-commerce B2B de alto tráfico.",
-    "entregables": ["Código fuente documentado", "Despliegue CI/CD automatizado", "Pruebas unitarias e integración"]
+    "casosUso": "SaaS corporativos, plataformas e-commerce B2B de alto tráfico y portales transaccionales.",
+    "entregables": [
+      "Código fuente 100% documentado y modular",
+      "Pipelines CI/CD automatizados",
+      "Pruebas de carga, unitarias y de integración",
+      "Garantía y soporte posdespliegue de 90 días"
+    ],
+    "stackTecnologico": ["React", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
+    "retornoInversion": "Reducción del 45% en costos de infraestructura y escalabilidad garantizada para +100k usuarios concurrentes."
   },
   {
     "id": 2,
-    "titulo": "Análisis & Estrategia de Datos",
+    "titulo": "Análisis & Estrategia de Datos Avanzada",
     "categoria": "Estrategia",
     "icono": "bar-chart-3",
-    "imagen": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Modelado de datos avanzados y analítica predictiva para la toma de decisiones financieras.",
+    "imagen": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Ingeniería de datos, analítica predictiva y modelos econométricos para optimizar márgenes financieros.",
     "detalles": [
-      "Tableros BI interactivos",
-      "Modelado Econométrico",
-      "Auditoría de Datos"
+      "Data Warehousing & ETL/ELT Pipelines",
+      "Modelos Econométricos & Predictivos",
+      "Auditoría de Calidad & Gobernanza de Datos"
     ],
     "tiempoEstimado": "3 - 6 Semanas",
-    "casosUso": "Dirección financiera, inteligencia de mercado y monitoreo de KPIs en tiempo real.",
-    "entregables": ["Modelos dimensionales de datos", "Dashboards en PowerBI / Tableau / Web", "Reportes econométricos"]
+    "casosUso": "Predicción de demanda, evaluación de riesgos crediticios, análisis de fuga de clientes (churn) y pricing dinámico.",
+    "entregables": [
+      "Pipelines de integración de datos heterogéneos",
+      "Modelos estadísticos validados",
+      "Diccionario de datos y arquitectura lineage",
+      "Manual de gobernanza y cumplimiento GDPR/Data Privacy"
+    ],
+    "stackTecnologico": ["Python", "Pandas", "Snowflake", "BigQuery", "SQL", "Scikit-Learn"],
+    "retornoInversion": "Incremento de hasta el 30% en precisión de proyecciones presupuestales."
   },
   {
     "id": 3,
-    "titulo": "Optimización & Pipelines RPA",
+    "titulo": "Optimización de Procesos & Robots RPA",
     "categoria": "Automatización",
     "icono": "cpu",
-    "imagen": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Implementación de pipelines de software para automatizar flujos de trabajo corporativos.",
+    "imagen": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Automatización robótica de procesos operacionales para eliminar tareas repetitivas y fricción humana.",
     "detalles": [
-      "Automatización RPA",
-      "Integración de herramientas",
-      "Reducción de latencia operativa"
+      "Desarrollo de Bots Autónomos (RPA)",
+      "Orquestación e Integración CRM - ERP",
+      "OCR Inteligente para lectura de documentos"
     ],
     "tiempoEstimado": "2 - 5 Semanas",
-    "casosUso": "Procesamiento masivo de facturación, sincronización CRM-ERP y extracción de datos.",
-    "entregables": ["Bots de automatización autónomos", "Documentación de procesos as-is / to-be", "Monitoring logs"]
+    "casosUso": "Conciliación bancaria masiva, procesamiento automático de facturas y migración de legados.",
+    "entregables": [
+      "Bots RPA desplegados y orquestados",
+      "Tablero de control de ejecuciones y errores",
+      "Mapas de procesos As-Is vs To-Be",
+      "Capacitación operativa al personal operativo"
+    ],
+    "stackTecnologico": ["Python", "UiPath", "Zapier Enterprise", "REST APIs", "Tesseract OCR"],
+    "retornoInversion": "Ahorro de más de 1,200 horas de trabajo manual al año por departamento."
   },
   {
     "id": 4,
-    "titulo": "Seguridad & Ciberarquitectura",
+    "titulo": "Ciberarquitectura & Defensa Zero-Trust",
     "categoria": "Seguridad",
     "icono": "shield-check",
-    "imagen": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Protección de infraestructura digital, políticas de acceso estricto e inmutabilidad de datos.",
+    "imagen": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Blindaje integral de activos digitales, infraestructura en la nube y gestión estricta de identidades.",
     "detalles": [
-      "Auditoría de vulnerabilidades",
-      "Implementación Zero-Trust",
-      "Protección de endpoints"
+      "Arquitectura de Seguridad Zero-Trust",
+      "Protección de Endpoints & WAF Corporativo",
+      "Monitoreo SIEM & Detección de Amenazas"
     ],
     "tiempoEstimado": "2 - 4 Semanas",
-    "casosUso": "Banca, fintech, salud y empresas que manejan información confidencial de clientes.",
-    "entregables": ["Informe de penetración & análisis de riesgos", "Políticas IAM Zero-Trust", "Parcheo de brechas crítico"]
+    "casosUso": "Fintechs, banca digital, sector salud y organizaciones con manejo masivo de datos confidenciales.",
+    "entregables": [
+      "Matriz de riesgos y mapa de vulnerabilidades",
+      "Politicas IAM (Identity Access Management) implementadas",
+      "Hardening de servidores y contenedores",
+      "Plan de respuesta rápida ante incidentes"
+    ],
+    "stackTecnologico": ["Cloudflare Enterprise", "AWS KMS", "Vault", "WireGuard", "Kali Linux"],
+    "retornoInversion": "Protección total contra secuestro de datos (ransomware) y fugas reputacionales."
   },
   {
     "id": 5,
-    "titulo": "Arquitectura Cloud & DevOps",
+    "titulo": "DevOps & Arquitectura Cloud Native",
     "categoria": "Desarrollo",
     "icono": "layers",
-    "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Migración, orquestación de contenedores y optimización de infraestructura en AWS, GCP o Azure.",
+    "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Orquestación de infraestructura en la nube, automatización de despliegues y alta disponibilidad.",
     "detalles": [
-      "Infraestructura como Código (Terraform)",
+      "Infraestructura como Código (Terraform / Pulumi)",
       "Orquestación con Kubernetes & Docker",
-      "Monitoreo de Costos Cloud"
+      "Optimización FinOps (Reducción de factura Cloud)"
     ],
     "tiempoEstimado": "4 - 7 Semanas",
-    "casosUso": "Sistemas monolíticos en migración a microservicios con alta disponibilidad.",
-    "entregables": ["Pipelines CI/CD", "Scripts IaC en Git", "Configuración de Auto-scaling"]
+    "casosUso": "Migración de servidores físicos a la nube, escalado automático en picos de demanda.",
+    "entregables": [
+      "Infraestructura declarativa en repositorios Git",
+      "Cluster K8s con balanceo de carga",
+      "Panel de observabilidad (Prometheus + Grafana)"
+    ],
+    "stackTecnologico": ["AWS", "Google Cloud", "Azure", "Kubernetes", "Docker", "Terraform"],
+    "retornoInversion": "Reducción promedio del 35% en gastos mensuales de servidores de nube."
   },
   {
     "id": 6,
-    "titulo": "Consultoría BI & Executive Dashboards",
+    "titulo": "Executive Dashboards & Consultoría BI",
     "categoria": "Estrategia",
     "icono": "bar-chart-3",
-    "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Visualización estratégica para comités ejecutivos y análisis de rentabilidad por unidad de negocio.",
+    "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Tableros ejecutivos en tiempo real para juntas directivas con métricas clave de negocio (KPIs).",
     "detalles": [
-      "Consolidación de Fuentes Hetereogéneas",
-      "KPIs de Margen Operativo & CAC/LTV",
-      "Alertas Automatizadas de Gestión"
+      "Consolidación de Fuentes Heterogéneas (SQL, APIs, Excel)",
+      "Análisis de Margen Operativo, LTV y CAC",
+      "Alertas Inteligentes a Email / Slack ante desviaciones"
     ],
     "tiempoEstimado": "3 - 5 Semanas",
-    "casosUso": "Juntas directivas que requieren visibilidad unificada de ventas, gastos y proyecciones.",
-    "entregables": ["Cuadro de mando integral web", "Conectores SQL/APIs automáticos", "Capacitación de uso"]
+    "casosUso": "Control de gestión comercial, financiero y operativo para CEOs, CFOs y comités ejecutivos.",
+    "entregables": [
+      "Cuadro de mando web 100% interactivo y responsive",
+      "Conectores automáticos de actualización diaria",
+      "Capacitación a directivos y analistas"
+    ],
+    "stackTecnologico": ["Power BI", "Tableau", "Looker", "D3.js", "SQL Server"],
+    "retornoInversion": "Toma de decisiones estratégica basada en datos reales en tiempo récord."
   },
   {
     "id": 7,
-    "titulo": "Integración de IA & LLMs Empresariales",
+    "titulo": "Agentes de IA & Modelos LLM Empresariales",
     "categoria": "Automatización",
-    "imagen": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
     "icono": "cpu",
-    "descripcion": "Agentes conversacionales customizados, búsqueda semántica (RAG) y automatización con IA.",
+    "imagen": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Integración de Inteligencia Artificial Generativa y asistentes virtuales sobre datos internos.",
     "detalles": [
-      "Asistentes Virtuales sobre Documentación Interna (RAG)",
+      "Sistemas RAG (Retrieval-Augmented Generation)",
       "Procesamiento de Lenguaje Natural (NLP)",
-      "Fine-tuning de Modelos"
+      "Integración de Modelos OpenAI, Gemini y Llama"
     ],
     "tiempoEstimado": "3 - 6 Semanas",
-    "casosUso": "Atención a clientes 24/7, asistentes de soporte técnico interno e investigación automatizada.",
-    "entregables": ["Agente conversacional embebible", "Base de conocimientos vectorial", "API endpoint de inferencia"]
+    "casosUso": "Atención al cliente 24/7, asistentes de consulta sobre políticas/manuales internos e investigación.",
+    "entregables": [
+      "Agente conversacional embebido en web/app corporativa",
+      "Base de datos vectorial optimizada",
+      "Filtros de moderación y privacidad de datos"
+    ],
+    "stackTecnologico": ["LangChain", "Pinecone", "OpenAI API", "Gemini API", "Python", "FastAPI"],
+    "retornoInversion": "Atención instantánea a más del 80% de consultas recurrentes de clientes y empleados."
   },
   {
     "id": 8,
-    "titulo": "Pentesting & Cumplimiento Normativo",
+    "titulo": "Pentesting & Pruebas de Penetración",
     "categoria": "Seguridad",
     "icono": "shield-check",
-    "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
-    "descripcion": "Simulación de ataques éticos y auditoría técnica bajo normas de seguridad internacional.",
+    "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Ataques simulados controlados para identificar y mitigar fallas críticas antes de que los hackers las exploten.",
     "detalles": [
-      "Pruebas de Penetración OWASP Top 10",
-      "Evaluación de Seguridad Web & Móvil",
-      "Análisis de Configuración de Red"
+      "Pruebas de Penetración Web & Móvil (OWASP Top 10)",
+      "Evaluación de Seguridad en Redes & APIs",
+      "Simulación de Phishing e Ingeniería Social"
     ],
     "tiempoEstimado": "2 - 4 Semanas",
-    "casosUso": "Prevención de filtraciones de datos y cumplimiento para certificación de auditores.",
-    "entregables": ["Reporte Ejecutivo & Técnico detallado", "Re-testing tras correcciones", "Certificado de auditoría"]
+    "casosUso": "Auditorías de cumplimiento normativo (ISO 27001, PCI-DSS) y certificación de seguridad.",
+    "entregables": [
+      "Reporte Ejecutivo para Junta Directiva",
+      "Reporte Técnico detallado con instrucciones de remediación",
+      "Segunda ronda de re-testing posterior a las correcciones"
+    ],
+    "stackTecnologico": ["Burp Suite Professional", "Metasploit", "Nmap", "Wireshark", "OWASP ZAP"],
+    "retornoInversion": "Evita multas regulatorias y pérdidas multimillonarias por vulnerabilidades no detectadas."
   }
 ]
