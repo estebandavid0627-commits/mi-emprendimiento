@@ -1,43 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  // 1. CARGA DINÁMICA DEL CATÁLOGO DESDE JSON (config.json / servicios.json)
   const serviciosContainer = document.getElementById("serviciosContainer");
   const filterButtons = document.querySelectorAll(".filter-btn");
   let serviciosData = [];
 
+  // 1. CARGA DE SERVICIOS (DESDE LOCALSTORAGE O ARCHIVO JSON)
   async function cargarServicios() {
-    try {
-      let response = await fetch("config.json");
-      if (!response.ok) {
-        response = await fetch("servicios.json");
-      }
-      if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
-      
-      serviciosData = await response.json();
+    const localData = localStorage.getItem("orion_servicios");
+    
+    if (localData) {
+      serviciosData = JSON.parse(localData);
       renderizarServicios(serviciosData);
-    } catch (error) {
-      console.error("Error cargando los servicios:", error);
-      if (serviciosContainer) {
-        serviciosContainer.innerHTML = `<p class="form-status-msg error">Error al cargar el catálogo de servicios.</p>`;
+    } else {
+      try {
+        let response = await fetch("config.json");
+        if (!response.ok) response = await fetch("servicios.json");
+        if (!response.ok) throw new Error("No se pudo cargar el archivo JSON");
+        
+        serviciosData = await response.json();
+        guardarEnLocalStorage(serviciosData);
+        renderizarServicios(serviciosData);
+      } catch (error) {
+        console.error("Error cargando los servicios:", error);
+        if (serviciosContainer) {
+          serviciosContainer.innerHTML = `<p class="form-status-msg error">Error al cargar el catálogo.</p>`;
+        }
       }
     }
   }
 
+  function guardarEnLocalStorage(data) {
+    localStorage.setItem("orion_servicios", JSON.stringify(data));
+  }
+
   function renderizarServicios(servicios) {
     if (!serviciosContainer) return;
-    
     serviciosContainer.innerHTML = "";
+
+    if (servicios.length === 0) {
+      serviciosContainer.innerHTML = `<p class="form-status-msg">No hay servicios registrados en esta categoría.</p>`;
+      return;
+    }
 
     servicios.forEach(servicio => {
       const card = document.createElement("div");
       card.className = "glass-card";
 
-      const detallesHTML = servicio.detalles 
+      const detallesHTML = (servicio.detalles && servicio.detalles.length > 0)
         ? `<ul class="service-details-list">${servicio.detalles.map(d => `<li>${d}</li>`).join('')}</ul>` 
         : '';
 
       card.innerHTML = `
-        <div class="icon-wrapper"><i data-lucide="${servicio.icono}"></i></div>
+        <div class="icon-wrapper"><i data-lucide="${servicio.icono || 'code-2'}"></i></div>
         <h3>${servicio.titulo}</h3>
         <p>${servicio.descripcion}</p>
         ${detallesHTML}
@@ -47,12 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
       serviciosContainer.appendChild(card);
     });
 
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+    if (window.lucide) lucide.createIcons();
+    renderizarListaAdmin();
   }
 
-  // Filtrado de servicios
+  // Filtrado
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       filterButtons.forEach(b => b.classList.remove("active"));
@@ -68,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Carga inicial
   cargarServicios();
 
   // 2. FORMULARIO DE CONTACTO (FORMSPREE)
@@ -79,46 +91,45 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      
       if (btnEnviar) btnEnviar.disabled = true;
       status.className = "form-status-msg";
-      status.innerHTML = "Enviando tu mensaje...";
-
-      const data = new FormData(form);
+      status.innerHTML = "Enviando...";
 
       try {
         const response = await fetch(form.action, {
           method: "POST",
-          body: data,
+          body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
           status.className = "form-status-msg success";
-          status.innerHTML = "¡Gracias! Tu consulta ha sido enviada con éxito. El equipo de Orion Digital Partners te contactará en breve.";
+          status.innerHTML = "¡Gracias! Consulta enviada con éxito.";
           form.reset();
         } else {
-          const result = await response.json();
           status.className = "form-status-msg error";
-          status.innerHTML = (result && result.errors) 
-            ? result.errors.map(e => e.message).join(", ") 
-            : "Hubo un inconveniente al enviar la consulta.";
+          status.innerHTML = "Ocurrió un error al enviar.";
         }
       } catch (error) {
         status.className = "form-status-msg error";
-        status.innerHTML = "Error de conexión. Revisa tu internet e inténtalo nuevamente.";
+        status.innerHTML = "Error de conexión.";
       } finally {
         if (btnEnviar) btnEnviar.disabled = false;
       }
     });
   }
 
-  // 3. MODAL DE LOGIN / ADMIN
+  // 3. MODAL Y DASHBOARD ADMINISTRATIVO (CRUD)
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
   const loginForm = document.getElementById("loginForm");
   const loginStatus = document.getElementById("loginStatus");
+  const adminLoginFormView = document.getElementById("adminLoginFormView");
+  const adminDashboardView = document.getElementById("adminDashboardView");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const addServiceForm = document.getElementById("addServiceForm");
+  const adminServicesContainer = document.getElementById("adminServicesContainer");
 
   if (openLoginBtn && loginModal && closeLoginBtn) {
     openLoginBtn.addEventListener("click", (e) => {
@@ -128,10 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeLoginBtn.addEventListener("click", () => {
       loginModal.classList.remove("active");
-    });
-
-    loginModal.addEventListener("click", (e) => {
-      if (e.target === loginModal) loginModal.classList.remove("active");
     });
   }
 
@@ -143,21 +150,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (user === "admin@orion.com" && pass === "orion2026") {
         loginStatus.className = "form-status-msg success";
-        loginStatus.innerHTML = "Autenticación exitosa. Redirigiendo al panel...";
+        loginStatus.innerHTML = "Acceso concedido...";
         setTimeout(() => {
-          alert("¡Bienvenido a la consola administrativa de Orion Digital Partners!");
-          loginModal.classList.remove("active");
           loginForm.reset();
           loginStatus.innerHTML = "";
-        }, 1200);
+          adminLoginFormView.style.display = "none";
+          adminDashboardView.style.display = "block";
+          renderizarListaAdmin();
+        }, 800);
       } else {
         loginStatus.className = "form-status-msg error";
-        loginStatus.innerHTML = "Credenciales incorrectas. Intenta con admin@orion.com / orion2026";
+        loginStatus.innerHTML = "Credenciales incorrectas (admin@orion.com / orion2026)";
       }
     });
   }
 
-  // 4. LÓGICA DEL ASISTENTE VIRTUAL / CHATBOT CON IA
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      adminDashboardView.style.display = "none";
+      adminLoginFormView.style.display = "block";
+    });
+  }
+
+  // AGREGAR NUEVO SERVICIO (CREATE)
+  if (addServiceForm) {
+    addServiceForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const titulo = document.getElementById("newTitle").value.trim();
+      const categoria = document.getElementById("newCategory").value;
+      const icono = document.getElementById("newIcon").value;
+      const descripcion = document.getElementById("newDesc").value.trim();
+      const detallesRaw = document.getElementById("newDetails").value.trim();
+
+      const detalles = detallesRaw ? detallesRaw.split(",").map(d => d.trim()) : [];
+
+      const nuevoServicio = {
+        id: Date.now(),
+        titulo,
+        categoria,
+        icono,
+        descripcion,
+        detalles
+      };
+
+      serviciosData.push(nuevoServicio);
+      guardarEnLocalStorage(serviciosData);
+      renderizarServicios(serviciosData);
+
+      addServiceForm.reset();
+      alert("¡Servicio agregado con éxito!");
+    });
+  }
+
+  // RENDERIZAR Y ELIMINAR SERVICIOS DESDE EL PANEL (DELETE)
+  function renderizarListaAdmin() {
+    if (!adminServicesContainer) return;
+    adminServicesContainer.innerHTML = "";
+
+    serviciosData.forEach(servicio => {
+      const row = document.createElement("div");
+      row.className = "admin-item-row";
+      row.innerHTML = `
+        <span><strong>${servicio.titulo}</strong> (${servicio.categoria})</span>
+        <button class="btn-delete" data-id="${servicio.id}">Eliminar</button>
+      `;
+      adminServicesContainer.appendChild(row);
+    });
+
+    // Eventos de eliminación
+    document.querySelectorAll(".btn-delete").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idToDelete = Number(e.target.getAttribute("data-id"));
+        serviciosData = serviciosData.filter(s => s.id !== idToDelete);
+        guardarEnLocalStorage(serviciosData);
+        renderizarServicios(serviciosData);
+      });
+    });
+  }
+
+  // 4. CHATBOT CON IA
   const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
   const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
   const chatbotBox = document.getElementById("chatbotBox");
@@ -166,13 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatbotMessages = document.getElementById("chatbotMessages");
 
   if (chatbotToggleBtn && chatbotBox && chatbotCloseBtn) {
-    chatbotToggleBtn.addEventListener("click", () => {
-      chatbotBox.classList.toggle("active");
-    });
-
-    chatbotCloseBtn.addEventListener("click", () => {
-      chatbotBox.classList.remove("active");
-    });
+    chatbotToggleBtn.addEventListener("click", () => chatbotBox.classList.toggle("active"));
+    chatbotCloseBtn.addEventListener("click", () => chatbotBox.classList.remove("active"));
   }
 
   if (chatbotForm) {
@@ -185,8 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       chatbotInput.value = "";
 
       setTimeout(() => {
-        const botReply = procesarConsultaIA(userText);
-        appendMessage(botReply, "bot-msg");
+        appendMessage(procesarConsultaIA(userText), "bot-msg");
       }, 500);
     });
   }
@@ -201,21 +267,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function procesarConsultaIA(consulta) {
     const texto = consulta.toLowerCase();
-
-    if (texto.includes("web") || texto.includes("software") || texto.includes("página") || texto.includes("desarrollo")) {
-      return "En **Desarrollo Web & Software** construimos plataformas modernas y escalables. Puedes agendar una sesión en nuestro formulario de contacto.";
-    } else if (texto.includes("dato") || texto.includes("analitica") || texto.includes("estrategia")) {
-      return "En **Análisis & Estrategia**, creamos tableros BI y modelos econométricos para potenciar decisiones clave de negocio.";
-    } else if (texto.includes("seguridad") || texto.includes("hack") || texto.includes("proteger")) {
-      return "Nuestra área de **Seguridad** implementa modelos Zero-Trust para garantizar inmutabilidad y protección de tus datos.";
-    } else if (texto.includes("automatiz") || texto.includes("proceso") || texto.includes("rpa")) {
-      return "Con **Optimización de Procesos**, automatizamos flujos de trabajo clave para incrementar la eficiencia operativa hasta 2.5x.";
-    } else if (texto.includes("hola") || texto.includes("buenos") || texto.includes("saludos")) {
-      return "¡Hola! ¿En qué área de consultoría digital o desarrollo podemos colaborarte hoy?";
-    } else if (texto.includes("precio") || texto.includes("costo") || texto.includes("cotiz")) {
-      return "Diseñamos soluciones a la medida. Envíanos un mensaje en el formulario para coordinar un diagnóstico gratuito.";
+    if (texto.includes("web") || texto.includes("software") || texto.includes("página")) {
+      return "En **Desarrollo Web & Software** construimos soluciones a medida con estándares modernos.";
+    } else if (texto.includes("dato") || texto.includes("analitica")) {
+      return "Ofrecemos tableros BI y modelos econométricos para optimizar tus decisiones de negocio.";
+    } else if (texto.includes("seguridad") || texto.includes("hack")) {
+      return "Implementamos arquitecturas Zero-Trust e inmutabilidad para blindar tu información.";
+    } else if (texto.includes("hola") || texto.includes("buenos")) {
+      return "¡Hola! ¿En qué servicio de Orion Digital Partners estás interesado hoy?";
     } else {
-      return "En Orion Digital Partners ofrecemos consultoría en software, datos, seguridad y automatización. ¿Te gustaría agendar una reunión corporativa?";
+      return "En Orion Digital Partners ofrecemos soluciones en software, datos, ciberseguridad y automatización. ¡Agenda tu diagnóstico gratuito en el formulario de contacto!";
     }
   }
 

@@ -78,7 +78,7 @@
     </div>
   </section>
 
-  <!-- Catálogo Dinámico de Servicios (DOM + JSON) -->
+  <!-- Catálogo Dinámico de Servicios (DOM + JSON + localStorage) -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <!-- Las tarjetas se insertarán dinámicamente desde el archivo JSON -->
+    <!-- Las tarjetas se insertarán dinámicamente -->
     <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
@@ -158,22 +158,73 @@
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Modal de Login / Panel Admin -->
+  <!-- Modal de Login / Panel Admin (CRUD) -->
   <div id="loginModal" class="modal-overlay">
-    <div class="modal-card">
+    <div class="modal-card" id="modalCard">
       <button id="closeLoginBtn" class="close-modal">&times;</button>
-      <div class="modal-header">
-        <span class="sub-title">Portal Corporativo</span>
-        <h2>Acceso Administrativo</h2>
-        <p>Ingresa tus credenciales para acceder a la consola de Orion.</p>
+      
+      <!-- VISTA 1: FORMULARIO DE LOGIN -->
+      <div id="adminLoginFormView">
+        <div class="modal-header">
+          <span class="sub-title">Portal Corporativo</span>
+          <h2>Acceso Administrativo</h2>
+          <p>Ingresa tus credenciales para acceder a la consola de Orion.</p>
+        </div>
+
+        <form id="loginForm" class="cta-form">
+          <input type="text" id="adminUser" placeholder="Usuario o Email Corporativo" required>
+          <input type="password" id="adminPass" placeholder="Contraseña" required>
+          <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
+          <p id="loginStatus" class="form-status-msg"></p>
+        </form>
       </div>
 
-      <form id="loginForm" class="cta-form">
-        <input type="text" id="adminUser" placeholder="Usuario o Email Corporativo" required>
-        <input type="password" id="adminPass" placeholder="Contraseña" required>
-        <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
-        <p id="loginStatus" class="form-status-msg"></p>
-      </form>
+      <!-- VISTA 2: PANEL DE GESTIÓN CRUD (ADMIN DASHBOARD) -->
+      <div id="adminDashboardView" style="display: none;">
+        <div class="modal-header">
+          <div class="admin-header-flex">
+            <div>
+              <span class="sub-title">Consola de Control</span>
+              <h2>Gestión de Servicios</h2>
+            </div>
+            <button id="logoutBtn" class="btn-secondary btn-small"><i data-lucide="log-out"></i> Salir</button>
+          </div>
+        </div>
+
+        <!-- Formulario para Agregar Nuevo Servicio -->
+        <form id="addServiceForm" class="admin-crud-form">
+          <h4>Agregar Nuevo Servicio</h4>
+          <input type="text" id="newTitle" placeholder="Título del servicio" required>
+          
+          <div class="form-group-grid">
+            <select id="newCategory" class="form-select" required>
+              <option value="Desarrollo">Desarrollo</option>
+              <option value="Estrategia">Estrategia</option>
+              <option value="Automatización">Automatización</option>
+              <option value="Seguridad">Seguridad</option>
+            </select>
+            <select id="newIcon" class="form-select" required>
+              <option value="code-2">Icono: Código (code-2)</option>
+              <option value="bar-chart-3">Icono: Datos (bar-chart-3)</option>
+              <option value="cpu">Icono: Automatización (cpu)</option>
+              <option value="shield-check">Icono: Seguridad (shield-check)</option>
+              <option value="layers">Icono: Capas (layers)</option>
+            </select>
+          </div>
+
+          <textarea id="newDesc" rows="2" placeholder="Descripción breve..." required></textarea>
+          <input type="text" id="newDetails" placeholder="Detalles (separados por coma, ej: PWA, APIs, Cloud)">
+          
+          <button type="submit" class="btn-primary btn-block"><i data-lucide="plus-circle"></i> Guardar Servicio</button>
+        </form>
+
+        <!-- Lista para eliminar servicios existentes -->
+        <div class="admin-services-list">
+          <h4>Servicios Publicados</h4>
+          <div id="adminServicesContainer" class="admin-items-scroll"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 

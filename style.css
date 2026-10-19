@@ -4,7 +4,7 @@
   --border-card: rgba(255, 255, 255, 0.07);
   --text-primary: #F9FAFB;
   --text-secondary: #9CA3AF;
-  --primary-accent: #2563EB; /* Azul Corporativo */
+  --primary-accent: #2563EB;
   --purple-accent: #7C3AED;
   --gradient-text: linear-gradient(135deg, #60A5FA 0%, #C084FC 100%);
   --font-main: 'Plus Jakarta Sans', sans-serif;
@@ -25,7 +25,6 @@ body {
   overflow-x: hidden;
 }
 
-/* RESPLANDORES DE FONDO AMBIENTALES */
 .bg-glow {
   position: absolute;
   width: 600px;
@@ -40,7 +39,7 @@ body {
 .bg-glow-1 { top: -100px; left: 15%; background: var(--primary-accent); }
 .bg-glow-2 { top: 600px; right: 10%; background: var(--purple-accent); }
 
-/* NAVBAR GLASSMORPHISM */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -186,7 +185,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* METRICAS DE IMPACTO */
+/* METRICAS */
 .stats-section {
   max-width: 1100px;
   margin: 2rem auto 5rem;
@@ -301,7 +300,7 @@ body {
   gap: 0.3rem;
 }
 
-/* FILTROS Y TARJETAS DINÁMICAS */
+/* FILTROS */
 .filter-container {
   display: flex;
   justify-content: center;
@@ -339,7 +338,6 @@ body {
   margin-bottom: 0.3rem;
 }
 
-/* METODOLOGIA / PASOS */
 .step-number {
   font-size: 2rem;
   font-weight: 800;
@@ -348,7 +346,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* CTA / CONTACTO ENTERPRISE */
+/* CONTACTO */
 .cta-section {
   max-width: 1000px;
   margin: 4rem auto 6rem;
@@ -385,21 +383,23 @@ body {
 
 .form-group-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .cta-form input, 
 .form-select, 
-.cta-form textarea {
+.cta-form textarea,
+.admin-crud-form input,
+.admin-crud-form textarea {
   width: 100%;
-  padding: 0.95rem 1.2rem;
+  padding: 0.85rem 1.1rem;
   border-radius: 10px;
   border: 1px solid var(--border-card);
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
   font-family: var(--font-main);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -411,7 +411,9 @@ body {
 
 .cta-form input:focus, 
 .form-select:focus, 
-.cta-form textarea:focus {
+.cta-form textarea:focus,
+.admin-crud-form input:focus,
+.admin-crud-form textarea:focus {
   border-color: #60A5FA;
   box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
 }
@@ -419,7 +421,16 @@ body {
 .btn-block {
   width: 100%;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.9rem;
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
 }
 
 .form-status-msg {
@@ -428,15 +439,9 @@ body {
   margin-top: 0.5rem;
 }
 
-.form-status-msg.success {
-  color: #34D399;
-}
+.form-status-msg.success { color: #34D399; }
+.form-status-msg.error { color: #F87171; }
 
-.form-status-msg.error {
-  color: #F87171;
-}
-
-/* FOOTER */
 .main-footer {
   border-top: 1px solid var(--border-card);
   padding: 2.5rem 1.5rem;
@@ -445,7 +450,7 @@ body {
   font-size: 0.85rem;
 }
 
-/* ESTILOS MODAL LOGIN / ADMIN */
+/* MODAL Y ADMIN DASHBOARD */
 .login-link {
   color: var(--text-secondary);
   font-size: 0.85rem;
@@ -456,9 +461,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.login-link:hover {
-  color: #60A5FA;
-}
+.login-link:hover { color: #60A5FA; }
 
 .modal-overlay {
   position: fixed;
@@ -485,19 +488,19 @@ body {
 .modal-card {
   background: #0D121F;
   border: 1px solid var(--border-card);
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2rem;
   border-radius: 20px;
   width: 90%;
-  max-width: 440px;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   transform: translateY(-20px);
   transition: transform 0.3s ease;
 }
 
-.modal-overlay.active .modal-card {
-  transform: translateY(0);
-}
+.modal-overlay.active .modal-card { transform: translateY(0); }
 
 .close-modal {
   position: absolute;
@@ -508,31 +511,75 @@ body {
   color: var(--text-secondary);
   font-size: 1.8rem;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.close-modal:hover {
-  color: #fff;
 }
 
 .modal-header {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.modal-header h2 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-top: 0.3rem;
+.admin-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.modal-header p {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  margin-top: 0.4rem;
+/* CRUD ADMIN STYLES */
+.admin-crud-form {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  padding: 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
 }
 
-/* WIDGET CHATBOT DE IA */
+.admin-crud-form h4 {
+  font-size: 0.95rem;
+  color: #60A5FA;
+}
+
+.admin-services-list h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.admin-items-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.admin-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-card);
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.btn-delete {
+  background: rgba(239, 68, 68, 0.2);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: #EF4444;
+  color: #fff;
+}
+
+/* CHATBOT */
 .chatbot-wrapper {
   position: fixed;
   bottom: 2rem;
@@ -552,13 +599,10 @@ body {
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.chatbot-toggle-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.6);
-}
+.chatbot-toggle-btn:hover { transform: scale(1.08); }
 
 .chatbot-box {
   position: absolute;
@@ -678,7 +722,4 @@ body {
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
