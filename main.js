@@ -380,20 +380,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function procesarConsultaIA(consulta) {
     const texto = consulta.toLowerCase();
 
-    if (texto.includes("pwa") || texto.includes("web") || texto.includes("software")) {
-      return "En **Desarrollo Web & Software** construimos PWAs de alto rendimiento y arquitecturas Cloud. Tiempo promedio: 4-8 semanas. ¿Deseas solicitar una cotización inicial?";
-    } else if (texto.includes("ia") || texto.includes("llm") || texto.includes("asistente")) {
-      return "Con nuestra solución de **Integración de IA & LLMs**, desarrollamos agentes conversacionales conectados a tus documentos internos (RAG) e integración con OpenAI / Gemini.";
-    } else if (texto.includes("ciberseguridad") || texto.includes("pentesting") || texto.includes("seguridad")) {
-      return "Ofrecemos **Pentesting & Cumplimiento Normativo** para auditar vulnerabilidades bajo OWASP Top 10 e implementar políticas Zero-Trust.";
-    } else if (texto.includes("dato") || texto.includes("bi") || texto.includes("dashboard")) {
-      return "Desarrollamos **Executive Dashboards** y modelos de datos para juntas directivas y análisis financiero predictivo.";
+    if (texto.includes("node") || texto.includes("express") || texto.includes("backend")) {
+      return "En **Desarrollo Backend con Node.js & Express** creamos APIs RESTful, enrutamiento dinámico y control de métodos HTTP (GET, POST, PUT, DELETE). ¿Deseas cotizar una arquitectura backend?";
+    } else if (texto.includes("mongo") || texto.includes("base de datos") || texto.includes("nosql")) {
+      return "Ofrecemos soluciones en **MongoDB** con operaciones CRUD completas y modelado de datos NoSQL de alta velocidad.";
+    } else if (texto.includes("react") || texto.includes("jsx") || texto.includes("componente")) {
+      return "Desarrollamos interfaces web dinámicas construidas con **React**, reutilización de componentes y manejo eficiente de Props.";
+    } else if (texto.includes("html") || texto.includes("css") || texto.includes("pwa")) {
+      return "Utilizamos maquetación semántica HTML5, modelo de caja CSS3 y JavaScript ES6+ para experiencias web responsivas e interactivas.";
     } else if (texto.includes("hola") || texto.includes("buenos") || texto.includes("saludos")) {
-      return "¡Hola! Bienvenido a Orion Digital Partners. Puedes usar las sugerencias rápidas abajo o preguntarme sobre cualquier servicio o tiempo de desarrollo.";
+      return "¡Hola! Bienvenido a Orion Digital Partners. Puedes preguntarme sobre servicios en React, Node.js, Express o MongoDB.";
     } else if (texto.includes("precio") || texto.includes("costo") || texto.includes("cotiz")) {
-      return "Cada proyecto se evalúa según su alcance técnico. Puedes seleccionar el servicio de tu interés en la sección **Contacto** para recibir un desglose detallado.";
+      return "Cada desarrollo Fullstack se cotiza según su alcance técnico. Puedes seleccionar el servicio de tu preferencia en la sección **Contacto**.";
     } else {
-      return "Contamos con 8 áreas clave de soluciones: Desarrollo Web, Estrategia de Datos, RPA, Ciberseguridad, DevOps, BI, Integración de IA y Pentesting. ¿Sobre cuál te gustaría profundizar?";
+      return "Ofrecemos arquitectura Fullstack: Frontend con React, Maquetación HTML5/CSS3, Backend con Node.js/Express, MongoDB NoSQL, Ciberseguridad y Automatizaciones RPA. ¿Sobre cuál te gustaría profundizar?";
     }
   }
 

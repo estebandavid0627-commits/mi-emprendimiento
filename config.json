@@ -5,135 +5,132 @@
     "categoria": "Desarrollo",
     "icono": "code-2",
     "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Arquitecturas de software robustas, escalables y de ultra-baja latencia para empresas líderes.",
+    "descripcion": "Arquitecturas de software robustas, escalables y de ultra-baja latencia construidas con componentes en React y maquetación HTML5/CSS3 moderna.",
     "detalles": [
-      "Aplicaciones Web Progresivas (PWA)",
-      "APIs RESTful, GraphQL & Microservicios",
-      "Sistemas Cloud Native & Serverless"
+      "Aplicaciones SPA & React Components",
+      "Maquetación Semántica HTML5 & CSS3 Responsive",
+      "Interacciones dinámicas con JavaScript ES6+"
     ],
     "tiempoEstimado": "4 - 8 Semanas",
     "casosUso": "SaaS corporativos, plataformas e-commerce B2B de alto tráfico y portales transaccionales.",
     "entregables": [
       "Código fuente 100% documentado y modular",
-      "Pipelines CI/CD automatizados",
+      "Componentes React reutilizables con Props",
       "Pruebas de carga, unitarias y de integración",
       "Garantía y soporte posdespliegue de 90 días"
     ],
-    "stackTecnologico": ["React", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
+    "stackTecnologico": ["React", "JavaScript ES6+", "HTML5", "CSS3", "JSX"],
     "retornoInversion": "Reducción del 45% en costos de infraestructura y escalabilidad garantizada para +100k usuarios concurrentes."
   },
   {
     "id": 2,
-    "titulo": "Análisis & Estrategia de Datos Avanzada",
-    "categoria": "Estrategia",
-    "icono": "bar-chart-3",
-    "imagen": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Ingeniería de datos, analítica predictiva y modelos econométricos para optimizar márgenes financieros.",
+    "titulo": "Desarrollo Backend con Node.js & Express",
+    "categoria": "Desarrollo",
+    "icono": "layers",
+    "imagen": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Construcción de servidores backend de alto rendimiento, arquitecturas de microservicios y enrutamiento dinámico.",
     "detalles": [
-      "Data Warehousing & ETL/ELT Pipelines",
-      "Modelos Econométricos & Predictivos",
-      "Auditoría de Calidad & Gobernanza de Datos"
+      "Servidores HTTP y Middleware con Express",
+      "Rutas y Manejo de Parámetros URL / Query",
+      "Endpoints RESTful (GET, POST, PUT, DELETE)"
     ],
     "tiempoEstimado": "3 - 6 Semanas",
-    "casosUso": "Predicción de demanda, evaluación de riesgos crediticios, análisis de fuga de clientes (churn) y pricing dinámico.",
+    "casosUso": "Servicios web corporativos, pasarelas de pago y backend para aplicaciones móviles/web.",
     "entregables": [
-      "Pipelines de integración de datos heterogéneos",
-      "Modelos estadísticos validados",
-      "Diccionario de datos y arquitectura lineage",
-      "Manual de gobernanza y cumplimiento de privacidad de datos"
+      "Servidor Node.js con Express optimizado",
+      "Documentación técnica de APIs",
+      "Manejo de códigos de estado HTTP y captura de errores"
     ],
-    "stackTecnologico": ["Python", "Pandas", "Snowflake", "BigQuery", "SQL", "Scikit-Learn"],
-    "retornoInversion": "Incremento de hasta el 30% en precisión de proyecciones presupuestales."
+    "stackTecnologico": ["Node.js", "Express", "NPM", "JavaScript", "REST APIs"],
+    "retornoInversion": "Interconexión eficiente de datos y reducción del tiempo de respuesta del servidor en un 60%."
   },
   {
     "id": 3,
+    "titulo": "Bases de Datos & Persistencia MongoDB",
+    "categoria": "Estrategia",
+    "icono": "bar-chart-3",
+    "imagen": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1000&q=80",
+    "descripcion": "Diseño de modelos de datos NoSQL, almacenamiento estructurado y operaciones CRUD de alta velocidad.",
+    "detalles": [
+      "Modelado de Documentos en MongoDB",
+      "Operaciones CRUD Avanzadas (Create, Read, Update, Delete)",
+      "Búsquedas, Filtros, Map/Filter/Reduce en Arreglos de Datos"
+    ],
+    "tiempoEstimado": "3 - 5 Semanas",
+    "casosUso": "Gestión masiva de usuarios, inventarios en tiempo real y repositorios NoSQL corporativos.",
+    "entregables": [
+      "Base de datos MongoDB estructurada",
+      "Scripts de consulta e índices de rendimiento",
+      "Documentación del esquema de datos"
+    ],
+    "stackTecnologico": ["MongoDB", "Mongoose", "JavaScript", "JSON", "Node.js"],
+    "retornoInversion": "Acceso a información crítica en milisegundos y flexibilidad total en el modelo de negocio."
+  },
+  {
+    "id": 4,
     "titulo": "Optimización de Procesos & Robots RPA",
     "categoria": "Automatización",
     "icono": "cpu",
     "imagen": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Automatización robótica de procesos operacionales para eliminar tareas repetitivas y fricción humana.",
+    "descripcion": "Automatización robótica de procesos operacionales con lógica JavaScript avanzada para eliminar tareas repetitivas.",
     "detalles": [
-      "Desarrollo de Bots Autónomos (RPA)",
-      "Orquestación e Integración CRM - ERP",
-      "OCR Inteligente para lectura de documentos"
+      "Manejo de Algoritmos (Bucles While, For, Condicionales)",
+      "Transformación de Datos con Métodos de Arreglo (Map, Filter, Reduce)",
+      "Desarrollo de Bots Autónomos (RPA)"
     ],
     "tiempoEstimado": "2 - 5 Semanas",
-    "casosUso": "Conciliación bancaria masiva, procesamiento automático de facturas y migración de legados.",
+    "casosUso": "Procesamiento automático de datos, limpieza masiva de arreglos/objetos y flujos automáticos.",
     "entregables": [
-      "Bots RPA desplegados y orquestados",
-      "Tablero de control de ejecuciones y errores",
-      "Mapas de procesos As-Is vs To-Be",
-      "Capacitación operativa al personal"
+      "Bots de procesamiento automatizado",
+      "Tablero de control de ejecuciones",
+      "Capacitación al equipo operativo"
     ],
-    "stackTecnologico": ["Python", "UiPath", "Zapier Enterprise", "REST APIs", "Tesseract OCR"],
+    "stackTecnologico": ["JavaScript ES6+", "Node.js", "JSON", "RPA Tools"],
     "retornoInversion": "Ahorro de más de 1,200 horas de trabajo manual al año por departamento."
   },
   {
-    "id": 4,
+    "id": 5,
     "titulo": "Ciberarquitectura & Defensa Zero-Trust",
     "categoria": "Seguridad",
     "icono": "shield-check",
     "imagen": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Blindaje integral de activos digitales, infraestructura en la nube y gestión estricta de identidades.",
+    "descripcion": "Blindaje integral de APIs, validaciones estrictas en formularios y protección contra inyecciones de datos.",
     "detalles": [
-      "Arquitectura de Seguridad Zero-Trust",
-      "Protección de Endpoints & WAF Corporativo",
-      "Monitoreo SIEM & Detección de Amenazas"
+      "Validaciones de Seguridad en Formularios HTML/JS",
+      "Seguridad en Endpoints HTTP con Express",
+      "Protección de Datos y Control de Acceso IAM"
     ],
     "tiempoEstimado": "2 - 4 Semanas",
-    "casosUso": "Fintechs, banca digital, sector salud y organizaciones con manejo masivo de datos confidenciales.",
+    "casosUso": "Fintechs, portales administrativos y plataformas con manejo de datos sensibles.",
     "entregables": [
-      "Matriz de riesgos y mapa de vulnerabilidades",
-      "Políticas IAM (Identity Access Management) implementadas",
-      "Hardening de servidores y contenedores",
+      "Matriz de validaciones y filtros de entrada de datos",
+      "Protección contra ataques comunes en APIs",
       "Plan de respuesta rápida ante incidentes"
     ],
-    "stackTecnologico": ["Cloudflare Enterprise", "AWS KMS", "Vault", "WireGuard", "Kali Linux"],
-    "retornoInversion": "Protección total contra secuestro de datos (ransomware) y fugas reputacionales."
+    "stackTecnologico": ["Express Security", "Node.js", "Validaciones HTML5", "HTTPS"],
+    "retornoInversion": "Protección total contra secuestro de datos (ransomware) y filtración de información."
   },
   {
-    "id": 5,
+    "id": 6,
     "titulo": "DevOps & Arquitectura Cloud Native",
     "categoria": "Desarrollo",
     "icono": "layers",
     "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Orquestación de infraestructura en la nube, automatización de despliegues y alta disponibilidad.",
+    "descripcion": "Configuración de entornos de desarrollo, gestión de paquetes NPM y despliegues en servidores cloud.",
     "detalles": [
-      "Infraestructura como Código (Terraform / Pulumi)",
-      "Orquestación con Kubernetes & Docker",
-      "Optimización FinOps (Reducción de factura Cloud)"
+      "Gestión de Dependencias con NPM",
+      "Configuración de Entornos de Ejecución Node.js",
+      "Despliegues continuos CI/CD"
     ],
     "tiempoEstimado": "4 - 7 Semanas",
-    "casosUso": "Migración de servidores físicos a la nube, escalado automático en picos de demanda.",
+    "casosUso": "Publicación de servidores backend en la nube y automatización de compilación de React.",
     "entregables": [
-      "Infraestructura declarativa en repositorios Git",
-      "Cluster K8s con balanceo de carga",
-      "Panel de observabilidad (Prometheus + Grafana)"
+      "Repositorio configurado con dependencias automáticas",
+      "Servidores de producción en la nube",
+      "Panel de monitoreo de disponibilidad"
     ],
-    "stackTecnologico": ["AWS", "Google Cloud", "Azure", "Kubernetes", "Docker", "Terraform"],
-    "retornoInversion": "Reducción promedio del 35% en gastos mensuales de servidores de nube."
-  },
-  {
-    "id": 6,
-    "titulo": "Executive Dashboards & Consultoría BI",
-    "categoria": "Estrategia",
-    "icono": "bar-chart-3",
-    "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Tableros ejecutivos en tiempo real para juntas directivas con métricas clave de negocio (KPIs).",
-    "detalles": [
-      "Consolidación de Fuentes Heterogéneas (SQL, APIs, Excel)",
-      "Análisis de Margen Operativo, LTV y CAC",
-      "Alertas Inteligentes a Email / Slack ante desviaciones"
-    ],
-    "tiempoEstimado": "3 - 5 Semanas",
-    "casosUso": "Control de gestión comercial, financiero y operativo para CEOs, CFOs y comités ejecutivos.",
-    "entregables": [
-      "Cuadro de mando web 100% interactivo y responsive",
-      "Conectores automáticos de actualización diaria",
-      "Capacitación a directivos y analistas"
-    ],
-    "stackTecnologico": ["Power BI", "Tableau", "Looker", "D3.js", "SQL Server"],
-    "retornoInversion": "Toma de decisiones estratégica basada en datos reales en tiempo récord."
+    "stackTecnologico": ["Node.js", "NPM", "Git", "GitHub Pages", "Vercel / Render"],
+    "retornoInversion": "Despliegues automatizados sin interrupciones del servicio."
   },
   {
     "id": 7,
@@ -141,42 +138,42 @@
     "categoria": "Automatización",
     "icono": "cpu",
     "imagen": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Integración de Inteligencia Artificial Generativa y asistentes virtuales sobre datos internos.",
+    "descripcion": "Integración de Inteligencia Artificial conectada a APIs REST con Express y Node.js.",
     "detalles": [
-      "Sistemas RAG (Retrieval-Augmented Generation)",
-      "Procesamiento de Lenguaje Natural (NLP)",
-      "Integración de Modelos OpenAI, Gemini y Llama"
+      "Consumo de APIs de IA desde Node.js/Express",
+      "Procesamiento de respuestas JSON dinámicas",
+      "Asistentes virtuales integrados a interfaces React/HTML"
     ],
     "tiempoEstimado": "3 - 6 Semanas",
-    "casosUso": "Atención al cliente 24/7, asistentes de consulta sobre políticas/manuales internos e investigación.",
+    "casosUso": "Chatbots inteligentes de soporte al cliente e integración con modelos LLM.",
     "entregables": [
-      "Agente conversacional embebido en web/app corporativa",
-      "Base de datos vectorial optimizada",
-      "Filtros de moderación y privacidad de datos"
+      "Agente conversacional embebido en la aplicación web",
+      "Endpoints Backend en Express para manejo de tokens de IA",
+      "Respuestas personalizadas según reglas de negocio"
     ],
-    "stackTecnologico": ["LangChain", "Pinecone", "OpenAI API", "Gemini API", "Python", "FastAPI"],
-    "retornoInversion": "Atención instantánea a más del 80% de consultas recurrentes de clientes y empleados."
+    "stackTecnologico": ["Node.js", "Express", "OpenAI / Gemini APIs", "JavaScript ES6+"],
+    "retornoInversion": "Atención instantánea a más del 80% de consultas recurrentes."
   },
   {
     "id": 8,
-    "titulo": "Pentesting & Pruebas de Penetración",
+    "titulo": "Pentesting & Auditoría de Código JS",
     "categoria": "Seguridad",
     "icono": "shield-check",
     "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
-    "descripcion": "Ataques simulados controlados para identificar y mitigar fallas críticas antes de que los hackers las exploten.",
+    "descripcion": "Auditoría de sintaxis en JavaScript, prevención de fugas en consola y sanitización de objetos.",
     "detalles": [
-      "Pruebas de Penetración Web & Móvil (OWASP Top 10)",
-      "Evaluación de Seguridad en Redes & APIs",
-      "Simulación de Phishing e Ingeniería Social"
+      "Análisis de vulnerabilidades en código cliente (DOM)",
+      "Revisión de mutación de Objetos y Arreglos",
+      "Pruebas de endpoints HTTP en servidores Express"
     ],
     "tiempoEstimado": "2 - 4 Semanas",
-    "casosUso": "Auditorías de cumplimiento normativo (ISO 27001, PCI-DSS) y certificación de seguridad.",
+    "casosUso": "Revisión pre-lanzamiento de aplicaciones Fullstack en React y Node.js.",
     "entregables": [
-      "Reporte Ejecutivo para Junta Directiva",
-      "Reporte Técnico detallado con instrucciones de remediación",
-      "Segunda ronda de re-testing posterior a las correcciones"
+      "Reporte técnico de hallazgos y correcciones",
+      "Código optimizado con buenas prácticas de ES6+",
+      "Certificado de auditoría técnica"
     ],
-    "stackTecnologico": ["Burp Suite Professional", "Metasploit", "Nmap", "Wireshark", "OWASP ZAP"],
-    "retornoInversion": "Evita multas regulatorias y pérdidas multimillonarias por vulnerabilidades no detectadas."
+    "stackTecnologico": ["JavaScript", "Express Audit", "Node.js", "DevTools"],
+    "retornoInversion": "Garantía de código limpio, sin errores en consola ni brechas de datos."
   }
 ]
