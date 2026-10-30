@@ -219,7 +219,7 @@ body {
 }
 
 /* SECCION SERVICIOS Y CALCULADORA */
-.services-section, .calculator-section, .process-section {
+.services-section, .calculator-section, .testimonials-section, .process-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 5rem 1.5rem;
@@ -244,13 +244,13 @@ body {
   margin-top: 0.5rem;
 }
 
-.cards-grid, .process-steps {
+.cards-grid, .process-steps, .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
-.glass-card, .step-card {
+.glass-card, .step-card, .testimonial-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   padding: 0;
@@ -261,7 +261,7 @@ body {
   overflow: hidden;
 }
 
-.glass-card:hover, .step-card:hover {
+.glass-card:hover, .step-card:hover, .testimonial-card:hover {
   transform: translateY(-6px);
   border-color: rgba(96, 165, 250, 0.4);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
@@ -321,7 +321,7 @@ body {
 
 .card-footer-link:hover { color: #93C5FD; }
 
-/* ESTILOS DEL COTIZADOR */
+/* COTIZADOR */
 .calculator-box {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
   border: 1px solid var(--border-card);
@@ -364,16 +364,8 @@ body {
   color: #60A5FA;
 }
 
-.calc-result-item {
-  margin-bottom: 1.2rem;
-}
-
-.calc-result-item span {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  display: block;
-}
-
+.calc-result-item { margin-bottom: 1.2rem; }
+.calc-result-item span { font-size: 0.85rem; color: var(--text-secondary); display: block; }
 .calc-result-item h2 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -384,11 +376,88 @@ body {
   margin-top: 0.2rem;
 }
 
-.calc-result-item p {
-  font-size: 1.1rem;
+.calc-result-item p { font-size: 1.1rem; font-weight: 700; color: #fff; margin-top: 0.2rem; }
+
+/* ESTILOS DE TESTIMONIOS */
+.testimonial-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-card .stars {
+  color: #F59E0B;
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-accent);
+}
+
+.author-info h4 {
+  font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
-  margin-top: 0.2rem;
+}
+
+.author-info span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.brands-banner {
+  margin-top: 4rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.brands-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 1.2rem;
+}
+
+.brands-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  color: #93C5FD;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.brands-flex span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* FILTROS */

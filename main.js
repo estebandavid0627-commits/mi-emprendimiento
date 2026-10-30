@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (selectEl) selectEl.value = "Cotizador Interactivo Web";
       if (mensajeEl) {
-        mensajeEl.value = `Hola, realicé una estimación en el cotizador interativo de la web con un valor aproximado de ${calcTotal.textContent} y un plazo de ${calcTiempo.textContent}. Me gustaría agendar una reunión técnica para avanzar.`;
+        mensajeEl.value = `Hola, realicé una estimación en el cotizador interactivo de la web con un valor aproximado de ${calcTotal.textContent} y un plazo de ${calcTiempo.textContent}. Me gustaría agendar una reunión técnica para avanzar.`;
       }
 
       const contactoSec = document.getElementById("contacto");
