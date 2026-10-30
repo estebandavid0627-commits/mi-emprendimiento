@@ -31,8 +31,8 @@
         <a href="#soluciones">Soluciones</a>
         <a href="#cotizador">Cotizador</a>
         <a href="#testimonios">Testimonios</a>
+        <a href="#faq">FAQ</a>
         <a href="#metodologia">Metodología</a>
-        <a href="#impacto">Impacto</a>
         <a href="#contacto" class="btn-nav">Agendar Diagnóstico</a>
         <a href="#" id="openLoginBtn" class="login-link"><i data-lucide="lock"></i> Admin</a>
       </nav>
@@ -86,6 +86,12 @@
       <span class="sub-title">Áreas de Especialización</span>
       <h2>Soluciones diseñadas para escala global</h2>
       
+      <!-- Buscador en tiempo real -->
+      <div class="search-box-container">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. React, Node, MongoDB, IA...)" class="search-input">
+      </div>
+
       <!-- Filtros de Categorías Dinámicos -->
       <div class="filter-container">
         <button class="filter-btn active" data-category="Todos">Todos</button>
@@ -110,7 +116,6 @@
 
     <div class="calculator-box">
       <div class="calc-grid">
-        <!-- Opciones de Configuración -->
         <div class="calc-options">
           <div class="calc-group">
             <label>1. Selecciona el Tipo de Solución:</label>
@@ -141,7 +146,6 @@
           </div>
         </div>
 
-        <!-- Panel de Resultado del Cotizador -->
         <div class="calc-summary">
           <h3>Resumen de Estimación</h3>
           <div class="calc-result-item">
@@ -160,7 +164,7 @@
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: TESTIMONIOS Y MARCAS ALIADAS -->
+  <!-- TESTIMONIOS Y MARCAS ALIADAS -->
   <section id="testimonios" class="testimonials-section">
     <div class="section-header">
       <span class="sub-title">Casos de Éxito</span>
@@ -205,7 +209,6 @@
       </div>
     </div>
 
-    <!-- Logos de Tecnologías / Alianzas -->
     <div class="brands-banner">
       <span class="brands-title">TECNOLOGÍAS & ESTÁNDARES ENTERPRISE</span>
       <div class="brands-flex">
@@ -214,6 +217,56 @@
         <span><i data-lucide="database"></i> MongoDB</span>
         <span><i data-lucide="code"></i> Express</span>
         <span><i data-lucide="shield"></i> Zero-Trust</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
+  <section id="faq" class="faq-section">
+    <div class="section-header">
+      <span class="sub-title">Resolución de Dudas</span>
+      <h2>Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="faq-accordion-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>¿Cómo gestionan la propiedad intelectual del código fuente?</span>
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>El 100% de la propiedad intelectual, repositorios de Git y documentación técnica son transferidos al cliente al finalizar el proyecto. No existen cláusulas de permanencia ni licencias ocultas.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>¿Por qué utilizan el stack React + Node.js + Express + MongoDB?</span>
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Es la arquitectura Fullstack moderna (MERN) de mayor rendimiento, flexibilidad y soporte de la industria. Permite escalar aplicaciones desde prototipos hasta millones de solicitudes concurrentes con mínima latencia.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>¿Qué incluye el soporte posdespliegue?</span>
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Todos nuestros desarrollos incluyen una garantía técnica de 90 días con monitoreo de rendimiento, corrección de incidentes y parches de seguridad sin costo adicional.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>¿Ofrecen integraciones con servicios o APIs de terceros?</span>
+          <i data-lucide="chevron-down" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Sí, desarrollamos middlewares a la medida para conectar pasarelas de pago, ERPs, CRMs, APIs de inteligencia artificial y bases de datos legacy de forma transparente y segura.</p>
+        </div>
       </div>
     </div>
   </section>

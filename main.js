@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const serviciosContainer = document.getElementById("serviciosContainer");
   const filterButtons = document.querySelectorAll(".filter-btn");
+  const searchInput = document.getElementById("searchInput");
   let serviciosData = [];
+  let categoriaActual = "Todos";
 
   // 1. CARGA Y RENDERIZADO DE SERVICIOS
   async function cargarServicios() {
@@ -10,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (localData) {
       serviciosData = JSON.parse(localData);
-      renderizarServicios(serviciosData);
+      filtrarYRenderizar();
     } else {
       try {
         let response = await fetch("config.json");
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         serviciosData = await response.json();
         guardarEnLocalStorage(serviciosData);
-        renderizarServicios(serviciosData);
+        filtrarYRenderizar();
       } catch (error) {
         console.error("Error cargando los servicios:", error);
         if (serviciosContainer) {
@@ -33,12 +35,30 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("orion_servicios", JSON.stringify(data));
   }
 
+  function filtrarYRenderizar() {
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+    const resultados = serviciosData.filter(servicio => {
+      const coincideCategoria = (categoriaActual === "Todos") || (servicio.categoria === categoriaActual);
+      
+      const enTitulo = servicio.titulo.toLowerCase().includes(query);
+      const enDesc = servicio.descripcion.toLowerCase().includes(query);
+      const enStack = servicio.stackTecnologico ? servicio.stackTecnologico.some(s => s.toLowerCase().includes(query)) : false;
+
+      const coincideBusqueda = query === "" || enTitulo || enDesc || enStack;
+
+      return coincideCategoria && coincideBusqueda;
+    });
+
+    renderizarServicios(resultados);
+  }
+
   function renderizarServicios(servicios) {
     if (!serviciosContainer) return;
     serviciosContainer.innerHTML = "";
 
     if (servicios.length === 0) {
-      serviciosContainer.innerHTML = `<p class="form-status-msg">No hay soluciones disponibles en esta categoría.</p>`;
+      serviciosContainer.innerHTML = `<p class="form-status-msg">No se encontraron soluciones que coincidan con la búsqueda.</p>`;
       return;
     }
 
@@ -74,6 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
     asignarEventosDetalle();
     renderizarListaAdmin();
   }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", filtrarYRenderizar);
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      categoriaActual = btn.getAttribute("data-category");
+      filtrarYRenderizar();
+    });
+  });
 
   // 2. COTIZADOR INTERACTIVO EN TIEMPO REAL
   const calcTipo = document.getElementById("calcTipo");
@@ -121,7 +154,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. MODAL DE DETALLE ENRIQUECIDO
+  // 3. FAQ ACORDEÓN INTERACTIVO
+  const faqQuestions = document.querySelectorAll(".faq-question");
+  faqQuestions.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      const isAlreadyActive = item.classList.contains("active");
+
+      document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+
+      if (!isAlreadyActive) {
+        item.classList.add("active");
+      }
+    });
+  });
+
+  // 4. MODAL DE DETALLE ENRIQUECIDO
   const serviceDetailModal = document.getElementById("serviceDetailModal");
   const closeDetailBtn = document.getElementById("closeDetailBtn");
   const serviceDetailContent = document.getElementById("serviceDetailContent");
@@ -215,25 +263,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Filtrado de Categorías
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const categoria = btn.getAttribute("data-category");
-      if (categoria === "Todos") {
-        renderizarServicios(serviciosData);
-      } else {
-        const filtrados = serviciosData.filter(s => s.categoria === categoria);
-        renderizarServicios(filtrados);
-      }
-    });
-  });
-
   cargarServicios();
 
-  // 4. FORMULARIO DE CONTACTO
+  // 5. FORMULARIO DE CONTACTO
   const form = document.getElementById("formularioContacto");
   const status = document.getElementById("form-status");
   const btnEnviar = document.getElementById("btnEnviar");
@@ -269,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 5. PANEL ADMINISTRATIVO (CRUD + LOCALSTORAGE)
+  // 6. PANEL ADMINISTRATIVO (CRUD + LOCALSTORAGE)
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
@@ -347,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       serviciosData.push(nuevoServicio);
       guardarEnLocalStorage(serviciosData);
-      renderizarServicios(serviciosData);
+      filtrarYRenderizar();
 
       addServiceForm.reset();
       alert("¡Servicio publicado y guardado en catálogo!");
@@ -373,12 +405,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const idToDelete = Number(e.target.getAttribute("data-id"));
         serviciosData = serviciosData.filter(s => s.id !== idToDelete);
         guardarEnLocalStorage(serviciosData);
-        renderizarServicios(serviciosData);
+        filtrarYRenderizar();
       });
     });
   }
 
-  // 6. CHATBOT CON IA POTENCIADO Y CHIPS DE PREGUNTAS RÁPIDAS
+  // 7. CHATBOT CON IA POTENCIADO Y CHIPS DE PREGUNTAS RÁPIDAS
   const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
   const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
   const chatbotBox = document.getElementById("chatbotBox");
