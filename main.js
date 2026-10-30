@@ -75,7 +75,53 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarListaAdmin();
   }
 
-  // 2. MODAL DE DETALLE ENRIQUECIDO
+  // 2. COTIZADOR INTERACTIVO EN TIEMPO REAL
+  const calcTipo = document.getElementById("calcTipo");
+  const calcComplejidad = document.getElementById("calcComplejidad");
+  const calcUrgencia = document.getElementById("calcUrgencia");
+  const calcTotal = document.getElementById("calcTotal");
+  const calcTiempo = document.getElementById("calcTiempo");
+  const btnLlevarAlFormulario = document.getElementById("btnLlevarAlFormulario");
+
+  function calcularPresupuesto() {
+    if (!calcTipo || !calcComplejidad || !calcUrgencia) return;
+
+    const base = Number(calcTipo.value);
+    const complejidad = Number(calcComplejidad.value);
+    const urgencia = Number(calcUrgencia.value);
+
+    const total = Math.round(base * complejidad * urgencia);
+    calcTotal.innerHTML = `$${total.toLocaleString()} USD`;
+
+    let semanas = "4 - 8 Semanas";
+    if (urgencia > 1) semanas = "2 - 4 Semanas (Prioritaria)";
+    else if (urgencia < 1) semanas = "8 - 12 Semanas";
+    calcTiempo.innerHTML = semanas;
+  }
+
+  if (calcTipo && calcComplejidad && calcUrgencia) {
+    calcTipo.addEventListener("change", calcularPresupuesto);
+    calcComplejidad.addEventListener("change", calcularPresupuesto);
+    calcUrgencia.addEventListener("change", calcularPresupuesto);
+    calcularPresupuesto();
+  }
+
+  if (btnLlevarAlFormulario) {
+    btnLlevarAlFormulario.addEventListener("click", () => {
+      const selectEl = document.getElementById("formServicioSelect");
+      const mensajeEl = document.getElementById("formMensaje");
+      
+      if (selectEl) selectEl.value = "Cotizador Interactivo Web";
+      if (mensajeEl) {
+        mensajeEl.value = `Hola, realicé una estimación en el cotizador interativo de la web con un valor aproximado de ${calcTotal.textContent} y un plazo de ${calcTiempo.textContent}. Me gustaría agendar una reunión técnica para avanzar.`;
+      }
+
+      const contactoSec = document.getElementById("contacto");
+      if (contactoSec) contactoSec.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // 3. MODAL DE DETALLE ENRIQUECIDO
   const serviceDetailModal = document.getElementById("serviceDetailModal");
   const closeDetailBtn = document.getElementById("closeDetailBtn");
   const serviceDetailContent = document.getElementById("serviceDetailContent");
@@ -187,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cargarServicios();
 
-  // 3. FORMULARIO DE CONTACTO
+  // 4. FORMULARIO DE CONTACTO
   const form = document.getElementById("formularioContacto");
   const status = document.getElementById("form-status");
   const btnEnviar = document.getElementById("btnEnviar");
@@ -223,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. PANEL ADMINISTRATIVO (CRUD + LOCALSTORAGE)
+  // 5. PANEL ADMINISTRATIVO (CRUD + LOCALSTORAGE)
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
@@ -332,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 5. CHATBOT CON IA POTENCIADO Y CHIPS DE PREGUNTAS RÁPIDAS
+  // 6. CHATBOT CON IA POTENCIADO Y CHIPS DE PREGUNTAS RÁPIDAS
   const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
   const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
   const chatbotBox = document.getElementById("chatbotBox");
@@ -391,7 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (texto.includes("hola") || texto.includes("buenos") || texto.includes("saludos")) {
       return "¡Hola! Bienvenido a Orion Digital Partners. Puedes preguntarme sobre servicios en React, Node.js, Express o MongoDB.";
     } else if (texto.includes("precio") || texto.includes("costo") || texto.includes("cotiz")) {
-      return "Cada desarrollo Fullstack se cotiza según su alcance técnico. Puedes seleccionar el servicio de tu preferencia en la sección **Contacto**.";
+      return "Cada desarrollo Fullstack se cotiza según su alcance técnico. Puedes usar nuestra **Calculadora de Presupuestos** arriba o seleccionar el servicio de tu preferencia en la sección **Contacto**.";
     } else {
       return "Ofrecemos arquitectura Fullstack: Frontend con React, Maquetación HTML5/CSS3, Backend con Node.js/Express, MongoDB NoSQL, Ciberseguridad y Automatizaciones RPA. ¿Sobre cuál te gustaría profundizar?";
     }

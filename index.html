@@ -29,6 +29,7 @@
       </a>
       <nav class="nav-links">
         <a href="#soluciones">Soluciones</a>
+        <a href="#cotizador">Cotizador</a>
         <a href="#metodologia">Metodología</a>
         <a href="#impacto">Impacto</a>
         <a href="#contacto" class="btn-nav">Agendar Diagnóstico</a>
@@ -50,8 +51,8 @@
         En Orion Digital Partners diseñamos soluciones Fullstack sofisticadas con React, Node.js, Express y MongoDB, optimizando procesos estratégicos y software a la medida.
       </p>
       <div class="hero-buttons">
-        <a href="#contacto" class="btn-primary">
-          Solicitar Diagnóstico Gratuito <i data-lucide="arrow-right"></i>
+        <a href="#cotizador" class="btn-primary">
+          Calcular Presupuesto <i data-lucide="calculator"></i>
         </a>
         <a href="#metodologia" class="btn-secondary">
           Conocer Metodología
@@ -73,7 +74,7 @@
       </div>
       <div class="stat-card">
         <h2>100%</h2>
-        <p>Código y Arquitectura Fullstack</p>
+        <p>Arquitectura Fullstack Modular</p>
       </div>
     </div>
   </section>
@@ -96,6 +97,66 @@
 
     <!-- Las tarjetas se insertarán dinámicamente -->
     <div class="cards-grid" id="serviciosContainer"></div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: COTIZADOR INTERACTIVO EN TIEMPO REAL -->
+  <section id="cotizador" class="calculator-section">
+    <div class="section-header">
+      <span class="sub-title">Calculadora de Proyectos</span>
+      <h2>Estima la inversión de tu software</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0.5rem auto 0;">Configura los parámetros de tu solución digital y obtén una estimación de tiempo y costo orientativa.</p>
+    </div>
+
+    <div class="calculator-box">
+      <div class="calc-grid">
+        <!-- Opciones de Configuración -->
+        <div class="calc-options">
+          <div class="calc-group">
+            <label>1. Selecciona el Tipo de Solución:</label>
+            <select id="calcTipo" class="form-select">
+              <option value="1200">Aplicación Frontend (React SPA)</option>
+              <option value="2500" selected>Sistema Fullstack (React + Node.js + Express)</option>
+              <option value="3500">Plataforma con Base de Datos MongoDB & APIs</option>
+              <option value="1800">Automatización RPA / Bot Inteligente</option>
+            </select>
+          </div>
+
+          <div class="calc-group">
+            <label>2. Nivel de Complejidad / Escala:</label>
+            <select id="calcComplejidad" class="form-select">
+              <option value="1">MVP / Startup (Básico)</option>
+              <option value="1.5" selected>Empresarial / Crecimiento (Intermedio)</option>
+              <option value="2.2">Corporativo de Alta Concurrencia (Avanzado)</option>
+            </select>
+          </div>
+
+          <div class="calc-group">
+            <label>3. Plazo de Entrega Requerido:</label>
+            <select id="calcUrgencia" class="form-select">
+              <option value="1.2">Entrega Rápida (Prioritaria - 2 a 4 semanas)</option>
+              <option value="1" selected>Estándar (Planificación óptima - 4 a 8 semanas)</option>
+              <option value="0.9">Flexible (Más de 8 semanas)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Panel de Resultado del Cotizador -->
+        <div class="calc-summary">
+          <h3>Resumen de Estimación</h3>
+          <div class="calc-result-item">
+            <span>Inversión Estimada (USD):</span>
+            <h2 id="calcTotal">$3,750 USD</h2>
+          </div>
+          <div class="calc-result-item">
+            <span>Tiempo Estimado de Desarrollo:</span>
+            <p id="calcTiempo">4 - 6 Semanas</p>
+          </div>
+          <button id="btnLlevarAlFormulario" class="btn-primary btn-block" style="margin-top: 1.5rem;">
+            Solicitar esta Cotización <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Metodología de Trabajo -->
@@ -146,6 +207,7 @@
           <option value="DevOps & Arquitectura Cloud Native">DevOps & Arquitectura Cloud Native</option>
           <option value="Agentes de IA & Modelos LLM Empresariales">Agentes de IA & Modelos LLM Empresariales</option>
           <option value="Pentesting & Auditoría de Código JS">Pentesting & Auditoría de Código JS</option>
+          <option value="Cotizador Interactivo Web">Cotizador Interactivo Web</option>
           <option value="Otro / Consulta General">Otro / Consulta General</option>
         </select>
 
