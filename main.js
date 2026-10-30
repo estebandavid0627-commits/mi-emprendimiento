@@ -3,8 +3,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const serviciosContainer = document.getElementById("serviciosContainer");
   const filterButtons = document.querySelectorAll(".filter-btn");
   const searchInput = document.getElementById("searchInput");
+  const toastContainer = document.getElementById("toastContainer");
   let serviciosData = [];
   let categoriaActual = "Todos";
+
+  // SISTEMA GLOBAL DE TOASTS
+  function mostrarToast(mensaje, tipo = "success") {
+    if (!toastContainer) return;
+    const toast = document.createElement("div");
+    toast.className = `toast-notification ${tipo}`;
+    toast.innerHTML = `<i data-lucide="${tipo === 'success' ? 'check-circle' : 'info'}"></i> <span>${mensaje}</span>`;
+    
+    toastContainer.appendChild(toast);
+    if (window.lucide) lucide.createIcons();
+
+    setTimeout(() => toast.classList.add("show"), 50);
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 400);
+    }, 3500);
+  }
 
   // 1. CARGA Y RENDERIZADO DE SERVICIOS
   async function cargarServicios() {
@@ -149,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mensajeEl.value = `Hola, realicé una estimación en el cotizador interactivo de la web con un valor aproximado de ${calcTotal.textContent} y un plazo de ${calcTiempo.textContent}. Me gustaría agendar una reunión técnica para avanzar.`;
       }
 
+      mostrarToast("¡Estimación cargada en el formulario de contacto!", "info");
       const contactoSec = document.getElementById("contacto");
       if (contactoSec) contactoSec.scrollIntoView({ behavior: 'smooth' });
     });
@@ -248,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
 
+            mostrarToast("¡Servicio seleccionado para cotización!", "info");
             const contactoSec = document.getElementById("contacto");
             if (contactoSec) contactoSec.scrollIntoView({ behavior: 'smooth' });
           });
@@ -287,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           status.className = "form-status-msg success";
           status.innerHTML = "¡Excelente! Un consultor de Orion Digital Partners te contactará a la brevedad.";
+          mostrarToast("¡Mensaje enviado con éxito!", "success");
           form.reset();
         } else {
           status.className = "form-status-msg error";
@@ -335,6 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
           loginStatus.innerHTML = "";
           adminLoginFormView.style.display = "none";
           adminDashboardView.style.display = "block";
+          mostrarToast("¡Bienvenido al Panel Admin!", "success");
           renderizarListaAdmin();
         }, 800);
       } else {
@@ -348,6 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", () => {
       adminDashboardView.style.display = "none";
       adminLoginFormView.style.display = "block";
+      mostrarToast("Sesión cerrada correctamente", "info");
     });
   }
 
@@ -382,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
       filtrarYRenderizar();
 
       addServiceForm.reset();
-      alert("¡Servicio publicado y guardado en catálogo!");
+      mostrarToast("¡Servicio publicado en el catálogo con éxito!", "success");
     });
   }
 
@@ -406,6 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
         serviciosData = serviciosData.filter(s => s.id !== idToDelete);
         guardarEnLocalStorage(serviciosData);
         filtrarYRenderizar();
+        mostrarToast("Servicio eliminado del catálogo", "info");
       });
     });
   }
