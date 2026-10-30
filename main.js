@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const imagenHTML = servicio.imagen 
         ? `<img src="${servicio.imagen}" alt="${servicio.titulo}" class="card-banner-img" loading="lazy">` 
-        : `<img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" class="card-banner-img">`;
+        : `<img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" class="card-banner-img">`;
 
       const detallesHTML = (servicio.detalles && servicio.detalles.length > 0)
         ? `<ul class="service-details-list">${servicio.detalles.slice(0, 3).map(d => `<li>${d}</li>`).join('')}</ul>` 
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarListaAdmin();
   }
 
-  // 2. MODAL DE DETALLE COMPLETO DEL SERVICIO
+  // 2. MODAL DE DETALLE ENRIQUECIDO
   const serviceDetailModal = document.getElementById("serviceDetailModal");
   const closeDetailBtn = document.getElementById("closeDetailBtn");
   const serviceDetailContent = document.getElementById("serviceDetailContent");
@@ -92,11 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
             ? `<ul class="service-details-list">${servicio.entregables.map(item => `<li>${item}</li>`).join('')}</ul>`
             : '<p class="form-status-msg">Consulte los entregables específicos en la propuesta comercial.</p>';
 
+          const stackHTML = servicio.stackTecnologico
+            ? `<div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.5rem;">
+                ${servicio.stackTecnologico.map(st => `<span style="background:rgba(37,99,235,0.2); border:1px solid rgba(96,165,250,0.3); color:#93C5FD; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.8rem; font-weight:600;">${st}</span>`).join('')}
+               </div>`
+            : '';
+
           serviceDetailContent.innerHTML = `
-            <img src="${servicio.imagen || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'}" class="modal-detail-banner" alt="${servicio.titulo}">
+            <img src="${servicio.imagen || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80'}" class="modal-detail-banner" alt="${servicio.titulo}">
             <span class="sub-title">${servicio.categoria}</span>
             <h2>${servicio.titulo}</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">${servicio.descripcion}</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">${servicio.descripcion}</p>
 
             <div class="detail-meta-grid">
               <div class="detail-meta-item">
@@ -109,8 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
 
+            ${servicio.retornoInversion ? `
+              <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); padding:0.9rem; border-radius:10px; margin-bottom:1.2rem;">
+                <strong style="color:#34D399; font-size:0.82rem; display:block; text-transform:uppercase; letter-spacing:1px;">Impacto & Retorno de Inversión (ROI)</strong>
+                <p style="color:#D1FAE5; font-size:0.9rem; margin-top:0.2rem;">${servicio.retornoInversion}</p>
+              </div>
+            ` : ''}
+
             <h4 class="detail-section-title">Entregables Clave</h4>
             ${entregablesHTML}
+
+            ${servicio.stackTecnologico ? `
+              <h4 class="detail-section-title">Stack Tecnológico Especializado</h4>
+              ${stackHTML}
+            ` : ''}
 
             <div style="margin-top: 2rem;">
               <button class="btn-primary btn-block btn-solicitar-modal" data-title="${servicio.titulo}">
@@ -122,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
           if (window.lucide) lucide.createIcons();
           serviceDetailModal.classList.add("active");
 
-          // Botón dentro del modal para seleccionar directo en el formulario
           document.querySelector(".btn-solicitar-modal").addEventListener("click", (evt) => {
             const serviceTitle = evt.target.closest("button").getAttribute("data-title");
             serviceDetailModal.classList.remove("active");
@@ -130,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectEl = document.getElementById("formServicioSelect");
             if (selectEl) {
               for (let i = 0; i < selectEl.options.length; i++) {
-                if (selectEl.options[i].value === serviceTitle) {
+                if (selectEl.options[i].value.toLowerCase().includes(serviceTitle.toLowerCase().slice(0, 10))) {
                   selectEl.selectedIndex = i;
                   break;
                 }
@@ -274,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titulo,
         categoria,
         icono,
-        imagen: imagen || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        imagen: imagen || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
         descripcion,
         detalles,
         tiempoEstimado: "2 - 4 Semanas",
@@ -328,7 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
     chatbotCloseBtn.addEventListener("click", () => chatbotBox.classList.remove("active"));
   }
 
-  // Evento para chips de preguntas rápidas
   document.querySelectorAll(".chip-btn").forEach(chip => {
     chip.addEventListener("click", () => {
       const query = chip.getAttribute("data-query");

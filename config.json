@@ -9,7 +9,7 @@
     "detalles": [
       "Aplicaciones Web Progresivas (PWA)",
       "APIs RESTful, GraphQL & Microservicios",
-      "Sistemas Cloud Native & Serveless"
+      "Sistemas Cloud Native & Serverless"
     ],
     "tiempoEstimado": "4 - 8 Semanas",
     "casosUso": "SaaS corporativos, plataformas e-commerce B2B de alto tráfico y portales transaccionales.",
@@ -40,7 +40,7 @@
       "Pipelines de integración de datos heterogéneos",
       "Modelos estadísticos validados",
       "Diccionario de datos y arquitectura lineage",
-      "Manual de gobernanza y cumplimiento GDPR/Data Privacy"
+      "Manual de gobernanza y cumplimiento de privacidad de datos"
     ],
     "stackTecnologico": ["Python", "Pandas", "Snowflake", "BigQuery", "SQL", "Scikit-Learn"],
     "retornoInversion": "Incremento de hasta el 30% en precisión de proyecciones presupuestales."
@@ -63,7 +63,7 @@
       "Bots RPA desplegados y orquestados",
       "Tablero de control de ejecuciones y errores",
       "Mapas de procesos As-Is vs To-Be",
-      "Capacitación operativa al personal operativo"
+      "Capacitación operativa al personal"
     ],
     "stackTecnologico": ["Python", "UiPath", "Zapier Enterprise", "REST APIs", "Tesseract OCR"],
     "retornoInversion": "Ahorro de más de 1,200 horas de trabajo manual al año por departamento."
@@ -84,7 +84,7 @@
     "casosUso": "Fintechs, banca digital, sector salud y organizaciones con manejo masivo de datos confidenciales.",
     "entregables": [
       "Matriz de riesgos y mapa de vulnerabilidades",
-      "Politicas IAM (Identity Access Management) implementadas",
+      "Políticas IAM (Identity Access Management) implementadas",
       "Hardening de servidores y contenedores",
       "Plan de respuesta rápida ante incidentes"
     ],

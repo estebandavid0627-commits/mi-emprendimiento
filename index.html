@@ -138,14 +138,14 @@
         
         <select name="servicio" id="formServicioSelect" class="form-select" required>
           <option value="" disabled selected>Selecciona el área de interés</option>
-          <option value="Desarrollo Web & Software">Desarrollo Web & Software</option>
-          <option value="Análisis & Estrategia de Datos">Análisis & Estrategia de Datos</option>
-          <option value="Optimización & Pipelines RPA">Optimización & Pipelines RPA</option>
-          <option value="Seguridad & Ciberarquitectura">Seguridad & Ciberarquitectura</option>
-          <option value="Arquitectura Cloud & DevOps">Arquitectura Cloud & DevOps</option>
-          <option value="Consultoría BI & Executive Dashboards">Consultoría BI & Executive Dashboards</option>
-          <option value="Integración de IA & LLMs Empresariales">Integración de IA & LLMs Empresariales</option>
-          <option value="Pentesting & Cumplimiento Normativo">Pentesting & Cumplimiento Normativo</option>
+          <option value="Desarrollo Web & Software a Medida">Desarrollo Web & Software a Medida</option>
+          <option value="Análisis & Estrategia de Datos Avanzada">Análisis & Estrategia de Datos Avanzada</option>
+          <option value="Optimización de Procesos & Robots RPA">Optimización de Procesos & Robots RPA</option>
+          <option value="Ciberarquitectura & Defensa Zero-Trust">Ciberarquitectura & Defensa Zero-Trust</option>
+          <option value="DevOps & Arquitectura Cloud Native">DevOps & Arquitectura Cloud Native</option>
+          <option value="Executive Dashboards & Consultoría BI">Executive Dashboards & Consultoría BI</option>
+          <option value="Agentes de IA & Modelos LLM Empresariales">Agentes de IA & Modelos LLM Empresariales</option>
+          <option value="Pentesting & Pruebas de Penetración">Pentesting & Pruebas de Penetración</option>
           <option value="Otro / Consulta General">Otro / Consulta General</option>
         </select>
 
@@ -163,7 +163,7 @@
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- MODAL DE DETALLE DEL SERVICIO (AL HACER CLIC EN 'VER ALCANCE') -->
+  <!-- MODAL DE DETALLE DEL SERVICIO -->
   <div id="serviceDetailModal" class="modal-overlay">
     <div class="modal-card modal-large">
       <button id="closeDetailBtn" class="close-modal">&times;</button>
@@ -176,7 +176,7 @@
     <div class="modal-card" id="modalCard">
       <button id="closeLoginBtn" class="close-modal">&times;</button>
       
-      <!-- VISTA 1: FORMULARIO DE LOGIN -->
+      <!-- VISTA 1: LOGIN -->
       <div id="adminLoginFormView">
         <div class="modal-header">
           <span class="sub-title">Portal Corporativo</span>
@@ -192,7 +192,7 @@
         </form>
       </div>
 
-      <!-- VISTA 2: PANEL DE GESTIÓN CRUD -->
+      <!-- VISTA 2: PANEL CRUD -->
       <div id="adminDashboardView" style="display: none;">
         <div class="modal-header">
           <div class="admin-header-flex">
@@ -240,7 +240,7 @@
     </div>
   </div>
 
-  <!-- WIDGET CHATBOT DE IA POTENCIADO CON SUGERENCIAS RÁPIDAS -->
+  <!-- WIDGET CHATBOT DE IA CON CHIPS -->
   <div class="chatbot-wrapper">
     <button id="chatbotToggleBtn" class="chatbot-toggle-btn" aria-label="Abrir Asistente Virtual">
       <i data-lucide="bot"></i>
@@ -264,7 +264,6 @@
         </div>
       </div>
 
-      <!-- Chips de sugerencias rápidas -->
       <div class="chatbot-quick-chips">
         <button class="chip-btn" data-query="Quiero cotizar software PWA">💻 Software PWA</button>
         <button class="chip-btn" data-query="¿Cómo integran IA en mi empresa?">🤖 Integración IA</button>
