@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let serviciosData = [];
   let categoriaActual = "Todos";
 
-  // NOTIFICACIONES TOAST DÁNAMICAS
+  // NOTIFICACIONES TOAST
   function mostrarToast(mensaje, tipo = "success") {
     if (!toastContainer) return;
     const toast = document.createElement("div");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3500);
   }
 
-  // 1. CARGA Y FILTRADO DE SERVICIOS
+  // 1. CARGA DE SERVICIOS
   async function cargarServicios() {
     const localData = localStorage.getItem("orion_servicios");
     
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      if (btn.id === "tabServiciosBtn" || btn.id === "tabLeadsBtn") return; // Ignorar pestañas admin
+      if (btn.id === "tabServiciosBtn" || btn.id === "tabLeadsBtn") return;
       filterButtons.forEach(b => {
         if (b.id !== "tabServiciosBtn" && b.id !== "tabLeadsBtn") b.classList.remove("active");
       });
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 6. DASHBOARD ADMIN (PANEL CON PESTAÑAS Y CRUD)
+  // 6. DASHBOARD ADMIN
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
@@ -352,7 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeLoginBtn.addEventListener("click", () => loginModal.classList.remove("active"));
   }
 
-  // Cambio de pestañas en Admin
   if (tabServiciosBtn && tabLeadsBtn) {
     tabServiciosBtn.addEventListener("click", () => {
       tabServiciosBtn.classList.add("active");
@@ -462,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 7. CHATBOT IA ADVISOR
+  // 7. MOTOR DE IA PRO (REACT, APIS REST, NODE.JS Y MONGODB)
   const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
   const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
   const chatbotBox = document.getElementById("chatbotBox");
@@ -494,36 +493,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function procesarEntradaChat(texto) {
     appendMessage(texto, "user-msg");
+    
+    // Indicador temporal de "escribiendo..."
+    const typingId = "typing_" + Date.now();
+    appendMessage("Pensando respuesta técnica...", "bot-msg", typingId);
+
     setTimeout(() => {
-      appendMessage(procesarConsultaIA(texto), "bot-msg");
-    }, 500);
+      const typingEl = document.getElementById(typingId);
+      if (typingEl) typingEl.remove();
+      
+      const respuestaIA = generarRespuestaIAPro(texto);
+      appendMessage(respuestaIA, "bot-msg");
+    }, 800);
   }
 
-  function appendMessage(text, className) {
+  function appendMessage(text, className, customId = "") {
     const msgDiv = document.createElement("div");
     msgDiv.className = `chat-msg ${className}`;
+    if (customId) msgDiv.id = customId;
     msgDiv.innerHTML = `<p>${text}</p>`;
     chatbotMessages.appendChild(msgDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
-  function procesarConsultaIA(consulta) {
-    const texto = consulta.toLowerCase();
+  function generarRespuestaIAPro(consulta) {
+    const q = consulta.toLowerCase();
 
-    if (texto.includes("node") || texto.includes("express") || texto.includes("backend")) {
-      return "En **Desarrollo Backend con Node.js & Express** creamos APIs RESTful, enrutamiento dinámico y control de métodos HTTP (GET, POST, PUT, DELETE). ¿Deseas cotizar una arquitectura backend?";
-    } else if (texto.includes("mongo") || texto.includes("base de datos") || texto.includes("nosql")) {
-      return "Ofrecemos soluciones en **MongoDB** con operaciones CRUD completas y modelado de datos NoSQL de alta velocidad.";
-    } else if (texto.includes("react") || texto.includes("jsx") || texto.includes("componente")) {
-      return "Desarrollamos interfaces web dinámicas construidas con **React**, reutilización de componentes y manejo eficiente de Props.";
-    } else if (texto.includes("html") || texto.includes("css") || texto.includes("pwa")) {
-      return "Utilizamos maquetación semántica HTML5, modelo de caja CSS3 y JavaScript ES6+ para experiencias web responsivas e interactivas.";
-    } else if (texto.includes("hola") || texto.includes("buenos") || texto.includes("saludos")) {
-      return "¡Hola! Bienvenido a Orion Digital Partners. Puedes preguntarme sobre servicios en React, Node.js, Express o MongoDB.";
-    } else if (texto.includes("precio") || texto.includes("costo") || texto.includes("cotiz")) {
-      return "Cada desarrollo Fullstack se cotiza según su alcance técnico. Puedes usar nuestra **Calculadora de Presupuestos** arriba o seleccionar el servicio de tu preferencia en la sección **Contacto**.";
-    } else {
-      return "Ofrecemos arquitectura Fullstack: Frontend con React, Maquetación HTML5/CSS3, Backend con Node.js/Express, MongoDB NoSQL, Ciberseguridad y Automatizaciones RPA. ¿Sobre cuál te gustaría profundizar?";
+    if (q.includes("api") || q.includes("fetch") || q.includes("axios")) {
+      return `Para consumir **APIs RESTful en React** de forma óptima, utilizamos el Hook <code>useEffect</code> junto con <code>async/await</code> dentro de <code>fetch</code> o Axios:
+      <pre><code>useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://api.ejemplo.com/data');
+      const data = await res.json();
+      setData(data);
+    } catch (error) {
+      console.error("Error al consumir API", error);
+    }
+  };
+  fetchData();
+}, []);</code></pre>`;
+    } 
+    else if (q.includes("node") || q.includes("express") || q.includes("backend")) {
+      return `En el backend desarrollamos servidores robustos con **Node.js y Express**. Estructuramos rutas y controladores limpios:
+      <pre><code>const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.get('/api/servicios', (req, res) => {
+  res.json({ status: 'success', data: [] });
+});
+
+app.listen(5000, () => console.log('Servidor corriendo en puerto 5000'));</code></pre>`;
+    } 
+    else if (q.includes("mongo") || q.includes("base de datos") || q.includes("crud")) {
+      return `Para la persistencia con **MongoDB y Mongoose**, definimos esquemas tipados y ejecutamos operaciones CRUD asíncronas de alto rendimiento:
+      <pre><code>const ServiceSchema = new mongoose.Schema({
+  titulo: { type: String, required: true },
+  categoria: String,
+  activo: { type: Boolean, default: true }
+});
+const Service = mongoose.model('Service', ServiceSchema);</code></pre>`;
+    } 
+    else if (q.includes("hook") || q.includes("usestate") || q.includes("useeffect")) {
+      return `Los **React Hooks** permiten gestionar estado y ciclos de vida sin clases. El <code>useState</code> controla el estado reactivo y <code>useEffect</code> maneja efectos secundarios como llamadas a APIs o suscripciones.`;
+    } 
+    else {
+      return `En **Orion Digital Partners** diseñamos arquitecturas MERN completas (MongoDB, Express, React, Node.js). ¿Te gustaría profundizar en algún componente de Frontend, integración de APIs o seguridad Backend?`;
     }
   }
 

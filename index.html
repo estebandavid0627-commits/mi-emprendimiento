@@ -83,19 +83,17 @@
     </div>
   </section>
 
-  <!-- Catálogo Dinámico de Servicios (Buscador + Filtros) -->
+  <!-- Catálogo Dinámico de Servicios -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
       <h2>Soluciones diseñadas para escala global</h2>
       
-      <!-- Buscador en tiempo real -->
       <div class="search-box-container">
         <i data-lucide="search" class="search-icon"></i>
         <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. React, Node, MongoDB, IA...)" class="search-input">
       </div>
 
-      <!-- Filtros de Categorías -->
       <div class="filter-container">
         <button class="filter-btn active" data-category="Todos">Todos</button>
         <button class="filter-btn" data-category="Desarrollo">Desarrollo</button>
@@ -166,7 +164,7 @@
     </div>
   </section>
 
-  <!-- Testimonios y Marcas -->
+  <!-- Testimonios -->
   <section id="testimonios" class="testimonials-section">
     <div class="section-header">
       <span class="sub-title">Casos de Éxito</span>
@@ -223,7 +221,7 @@
     </div>
   </section>
 
-  <!-- Preguntas Frecuentes (FAQ Acordeón) -->
+  <!-- FAQ -->
   <section id="faq" class="faq-section">
     <div class="section-header">
       <span class="sub-title">Resolución de Dudas</span>
@@ -289,218 +287,4 @@
       <div class="step-card">
         <span class="step-number">02</span>
         <h3>Lógica de Negocio & APIs con Node.js</h3>
-        <p>Estructuramos servidores backend con Express, validando rutas, controladores y bases de datos MongoDB.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-number">03</span>
-        <h3>Componentes React & Escalabilidad</h3>
-        <p>Desplegamos componentes interactivos en React con JSX y props para garantizar rendimiento sostenido.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección de Contacto -->
-  <section id="contacto" class="cta-section">
-    <div class="cta-box">
-      <h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
-      <p>Cuéntanos sobre tus metas y te responderemos con una propuesta personalizada estructurada a tus necesidades.</p>
-      
-      <form class="cta-form" id="formularioContacto" action="https://formspree.io/f/xeaevyvq" method="POST">
-        <div class="form-group-grid">
-          <input type="text" name="nombre" id="formNombre" placeholder="Nombre completo o empresa" required>
-          <input type="email" name="email" id="formEmail" placeholder="Tu correo corporativo" required>
-        </div>
-        
-        <select name="servicio" id="formServicioSelect" class="form-select" required>
-          <option value="" disabled selected>Selecciona el área de interés</option>
-          <option value="Desarrollo Web & Software a Medida (React)">Desarrollo Web & Software a Medida (React)</option>
-          <option value="Desarrollo Backend con Node.js & Express">Desarrollo Backend con Node.js & Express</option>
-          <option value="Bases de Datos & Persistencia MongoDB">Bases de Datos & Persistencia MongoDB</option>
-          <option value="Optimización de Procesos & Robots RPA">Optimización de Procesos & Robots RPA</option>
-          <option value="Ciberarquitectura & Defensa Zero-Trust">Ciberarquitectura & Defensa Zero-Trust</option>
-          <option value="DevOps & Arquitectura Cloud Native">DevOps & Arquitectura Cloud Native</option>
-          <option value="Agentes de IA & Modelos LLM Empresariales">Agentes de IA & Modelos LLM Empresariales</option>
-          <option value="Pentesting & Auditoría de Código JS">Pentesting & Auditoría de Código JS</option>
-          <option value="Cotizador Interactivo Web">Cotizador Interactivo Web</option>
-          <option value="Otro / Consulta General">Otro / Consulta General</option>
-        </select>
-
-        <textarea name="mensaje" id="formMensaje" rows="4" placeholder="Describe brevemente tus requerimientos u objetivos..." required></textarea>
-
-        <button type="submit" id="btnEnviar" class="btn-primary btn-block">Enviar Consulta</button>
-
-        <p id="form-status" class="form-status-msg"></p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer Pro -->
-  <footer class="main-footer">
-    <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- Modal Detalle del Servicio -->
-  <div id="serviceDetailModal" class="modal-overlay">
-    <div class="modal-card modal-large">
-      <button id="closeDetailBtn" class="close-modal">&times;</button>
-      <div id="serviceDetailContent"></div>
-    </div>
-  </div>
-
-  <!-- Modal Admin Dashboard Completo -->
-  <div id="loginModal" class="modal-overlay">
-    <div class="modal-card" id="modalCard">
-      <button id="closeLoginBtn" class="close-modal">&times;</button>
-      
-      <!-- VISTA 1: LOGIN -->
-      <div id="adminLoginFormView">
-        <div class="modal-header">
-          <span class="sub-title">Portal Corporativo</span>
-          <h2>Acceso Administrativo</h2>
-          <p>Ingresa tus credenciales para acceder a la consola de Orion.</p>
-        </div>
-
-        <form id="loginForm" class="cta-form">
-          <input type="text" id="adminUser" placeholder="Usuario o Email Corporativo" required>
-          <input type="password" id="adminPass" placeholder="Contraseña" required>
-          <button type="submit" class="btn-primary btn-block">Iniciar Sesión</button>
-          <p id="loginStatus" class="form-status-msg"></p>
-        </form>
-      </div>
-
-      <!-- VISTA 2: PANEL DASHBOARD EXPANDIDO CON PESTAÑAS (LEADS Y SERVICIOS) -->
-      <div id="adminDashboardView" style="display: none;">
-        <div class="modal-header">
-          <div class="admin-header-flex">
-            <div>
-              <span class="sub-title">Consola de Control</span>
-              <h2>Panel de Administración</h2>
-            </div>
-            <button id="logoutBtn" class="btn-secondary btn-small"><i data-lucide="log-out"></i> Salir</button>
-          </div>
-        </div>
-
-        <!-- Métricas Rápidas en Dashboard -->
-        <div class="detail-meta-grid" style="margin: 1.2rem 0;">
-          <div class="detail-meta-item">
-            <strong>Servicios Activos</strong>
-            <span id="statCountServices">0 Soluciones</span>
-          </div>
-          <div class="detail-meta-item">
-            <strong>Prospectos Recibidos</strong>
-            <span>2 Consultas Nuevas</span>
-          </div>
-        </div>
-
-        <!-- Pestañas de Navegación del Admin -->
-        <div style="display: flex; gap: 0.8rem; margin-bottom: 1.2rem;">
-          <button id="tabServiciosBtn" class="filter-btn active">Gestión de Servicios</button>
-          <button id="tabLeadsBtn" class="filter-btn">Leads de Contacto (2)</button>
-        </div>
-
-        <!-- SECCIÓN PESTAÑA 1: CRUD SERVICIOS -->
-        <div id="panelServiciosContent">
-          <form id="addServiceForm" class="admin-crud-form">
-            <h4>Agregar Nuevo Servicio</h4>
-            <input type="text" id="newTitle" placeholder="Título del servicio" required>
-            
-            <div class="form-group-grid">
-              <select id="newCategory" class="form-select" required>
-                <option value="Desarrollo">Desarrollo</option>
-                <option value="Estrategia">Estrategia</option>
-                <option value="Automatización">Automatización</option>
-                <option value="Seguridad">Seguridad</option>
-              </select>
-              <select id="newIcon" class="form-select" required>
-                <option value="code-2">Icono: Código (code-2)</option>
-                <option value="bar-chart-3">Icono: Datos (bar-chart-3)</option>
-                <option value="cpu">Icono: Automatización (cpu)</option>
-                <option value="shield-check">Icono: Seguridad (shield-check)</option>
-                <option value="layers">Icono: Capas (layers)</option>
-              </select>
-            </div>
-
-            <textarea id="newDesc" rows="2" placeholder="Descripción breve..." required></textarea>
-            <input type="text" id="newDetails" placeholder="Detalles (separados por coma)">
-            <input type="url" id="newImg" placeholder="URL de Imagen opcional (HTTPS)">
-            
-            <button type="submit" class="btn-primary btn-block"><i data-lucide="plus-circle"></i> Guardar Servicio</button>
-          </form>
-
-          <div class="admin-services-list">
-            <h4>Servicios Publicados</h4>
-            <div id="adminServicesContainer" class="admin-items-scroll"></div>
-          </div>
-        </div>
-
-        <!-- SECCIÓN PESTAÑA 2: LEADS REGISTRADOS -->
-        <div id="panelLeadsContent" style="display: none;">
-          <div class="admin-services-list">
-            <h4>Solicitudes de Cotización Recientes</h4>
-            <div class="admin-items-scroll">
-              <div class="admin-item-row">
-                <div>
-                  <strong>TechCorp S.A.</strong> (contacto@techcorp.com)
-                  <p style="font-size: 0.78rem; color: var(--text-secondary);">Interés: Sistema Fullstack (React + Node)</p>
-                </div>
-                <span style="font-size: 0.75rem; color: #60A5FA;">Hoy</span>
-              </div>
-              <div class="admin-item-row">
-                <div>
-                  <strong>Logística Global</strong> (operaciones@logistica.co)
-                  <p style="font-size: 0.78rem; color: var(--text-secondary);">Interés: Bot RPA / Automatización</p>
-                </div>
-                <span style="font-size: 0.75rem; color: #60A5FA;">Ayer</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Widget Chatbot IA Advisor -->
-  <div class="chatbot-wrapper">
-    <button id="chatbotToggleBtn" class="chatbot-toggle-btn" aria-label="Abrir Asistente Virtual">
-      <i data-lucide="bot"></i>
-    </button>
-
-    <div id="chatbotBox" class="chatbot-box">
-      <div class="chatbot-header">
-        <div class="chatbot-title">
-          <i data-lucide="sparkles"></i>
-          <div>
-            <h4>Orion AI Advisor</h4>
-            <span class="online-status">En línea</span>
-          </div>
-        </div>
-        <button id="chatbotCloseBtn" class="close-chatbot">&times;</button>
-      </div>
-
-      <div id="chatbotMessages" class="chatbot-messages">
-        <div class="chat-msg bot-msg">
-          <p>¡Hola! Soy <strong>Orion AI Advisor</strong>. ¿En qué solución en React, Node.js, Express o MongoDB te puedo orientar hoy?</p>
-        </div>
-      </div>
-
-      <div class="chatbot-quick-chips">
-        <button class="chip-btn" data-query="¿Cómo construyen servidores en Node.js?">⚡ Backend Node.js</button>
-        <button class="chip-btn" data-query="Quiero cotizar una app en React">⚛️ App React</button>
-        <button class="chip-btn" data-query="¿Cómo manejan MongoDB?">🍃 MongoDB CRUD</button>
-      </div>
-
-      <form id="chatbotForm" class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="Pregunta sobre React, Express, MongoDB..." required autocomplete="off">
-        <button type="submit"><i data-lucide="send"></i></button>
-      </form>
-    </div>
-  </div>
-
-  <script src="main.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
-</body>
-</html>
+        <p>Estructuramos servidores backend con Express
