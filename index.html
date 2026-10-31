@@ -5,286 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orion Digital Partners | Consultoría & Soluciones Digitales</title>
   
-  <!-- Fuente Google Fonts (Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Iconos Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Luces de fondo -->
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
-
-  <!-- Contenedor de Notificaciones Toast Flotantes -->
   <div id="toastContainer" class="toast-container"></div>
 
-  <!-- Navbar Glassmorphism -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#" class="brand-logo">
-        <span class="logo-accent">Orion</span> Partners
-      </a>
+      <a href="#" class="brand-logo"><span class="logo-accent">Orion</span> Partners</a>
       <nav class="nav-links">
         <a href="#soluciones">Soluciones</a>
         <a href="#cotizador">Cotizador</a>
         <a href="#testimonios">Testimonios</a>
         <a href="#faq">FAQ</a>
-        <a href="#metodologia">Metodología</a>
         <a href="#contacto" class="btn-nav">Agendar Diagnóstico</a>
-        <a href="#" id="openLoginBtn" class="login-link"><i data-lucide="lock"></i> Admin</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
-      <span class="badge-pill">
-        <i data-lucide="shield-check"></i> Consultoría & Ingeniería Fullstack
-      </span>
-      <h1 class="hero-title">
-        Construimos la infraestructura para tu <span class="gradient-text">próximo gran salto</span>
-      </h1>
-      <p class="hero-subtitle">
-        En Orion Digital Partners diseñamos soluciones Fullstack sofisticadas con React, Node.js, Express y MongoDB, optimizando procesos estratégicos y software a la medida.
-      </p>
-      <div class="hero-buttons">
-        <a href="#cotizador" class="btn-primary">
-          Calcular Presupuesto <i data-lucide="calculator"></i>
-        </a>
-        <a href="#metodologia" class="btn-secondary">
-          Conocer Metodología
-        </a>
-      </div>
+      <span class="badge-pill">Consultoría & Ingeniería Fullstack</span>
+      <h1 class="hero-title">Construimos la infraestructura para tu <span class="gradient-text">próximo gran salto</span></h1>
+      <p class="hero-subtitle">Soluciones Fullstack sofisticadas con React, Node.js, Express y MongoDB.</p>
     </div>
   </section>
 
-  <!-- Métricas de Impacto -->
-  <section id="impacto" class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h2>99.9%</h2>
-        <p>Fiabilidad en Entregables</p>
-      </div>
-      <div class="stat-card">
-        <h2>2.5x</h2>
-        <p>Eficiencia Operativa</p>
-      </div>
-      <div class="stat-card">
-        <h2>100%</h2>
-        <p>Arquitectura Fullstack Modular</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Catálogo Dinámico de Servicios -->
+  <!-- SECCIÓN DE SERVICIOS -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
       <h2>Soluciones diseñadas para escala global</h2>
       
       <div class="search-box-container">
-        <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. React, Node, MongoDB, IA...)" class="search-input">
+        <input type="text" id="searchInput" placeholder="Buscar solución..." class="search-input">
       </div>
 
       <div class="filter-container">
         <button class="filter-btn active" data-category="Todos">Todos</button>
         <button class="filter-btn" data-category="Desarrollo">Desarrollo</button>
-        <button class="filter-btn" data-category="Estrategia">Estrategia</button>
         <button class="filter-btn" data-category="Automatización">Automatización</button>
         <button class="filter-btn" data-category="Seguridad">Seguridad</button>
       </div>
     </div>
 
+    <!-- Contenedor donde se inyectarán las tarjetas -->
     <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
-  <!-- Cotizador Interactivo -->
-  <section id="cotizador" class="calculator-section">
-    <div class="section-header">
-      <span class="sub-title">Calculadora de Proyectos</span>
-      <h2>Estima la inversión de tu software</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0.5rem auto 0;">Configura los parámetros de tu solución digital y obtén una estimación de tiempo y costo orientativa.</p>
-    </div>
+  <footer class="main-footer">
+    <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
+  </footer>
 
-    <div class="calculator-box">
-      <div class="calc-grid">
-        <div class="calc-options">
-          <div class="calc-group">
-            <label>1. Selecciona el Tipo de Solución:</label>
-            <select id="calcTipo" class="form-select">
-              <option value="1200">Aplicación Frontend (React SPA)</option>
-              <option value="2500" selected>Sistema Fullstack (React + Node.js + Express)</option>
-              <option value="3500">Plataforma con Base de Datos MongoDB & APIs</option>
-              <option value="1800">Automatización RPA / Bot Inteligente</option>
-            </select>
-          </div>
-
-          <div class="calc-group">
-            <label>2. Nivel de Complejidad / Escala:</label>
-            <select id="calcComplejidad" class="form-select">
-              <option value="1">MVP / Startup (Básico)</option>
-              <option value="1.5" selected>Empresarial / Crecimiento (Intermedio)</option>
-              <option value="2.2">Corporativo de Alta Concurrencia (Avanzado)</option>
-            </select>
-          </div>
-
-          <div class="calc-group">
-            <label>3. Plazo de Entrega Requerido:</label>
-            <select id="calcUrgencia" class="form-select">
-              <option value="1.2">Entrega Rápida (Prioritaria - 2 a 4 semanas)</option>
-              <option value="1" selected>Estándar (Planificación óptima - 4 a 8 semanas)</option>
-              <option value="0.9">Flexible (Más de 8 semanas)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="calc-summary">
-          <h3>Resumen de Estimación</h3>
-          <div class="calc-result-item">
-            <span>Inversión Estimada (USD):</span>
-            <h2 id="calcTotal">$3,750 USD</h2>
-          </div>
-          <div class="calc-result-item">
-            <span>Tiempo Estimado de Desarrollo:</span>
-            <p id="calcTiempo">4 - 6 Semanas</p>
-          </div>
-          <button id="btnLlevarAlFormulario" class="btn-primary btn-block" style="margin-top: 1.5rem;">
-            Solicitar esta Cotización <i data-lucide="arrow-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonios -->
-  <section id="testimonios" class="testimonials-section">
-    <div class="section-header">
-      <span class="sub-title">Casos de Éxito</span>
-      <h2>Lo que dicen nuestros aliados estratégicos</h2>
-    </div>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"Orion Digital Partners transformó por completo nuestra arquitectura backend con Node.js y Express. La latencia disminuyó un 60% y el soporte post-despliegue ha sido excepcional."</p>
-        <div class="author-info">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Valeria Gómez">
-          <div>
-            <h4>Valeria Gómez</h4>
-            <span>CTO en FinTech Group</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"La migración de nuestro frontend hacia componentes en React nos permitió acelerar el lanzamiento de nuevos módulos en tiempo récord. Su enfoque cuantitativo e ingenieril es brillante."</p>
-        <div class="author-info">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Carlos Mendoza">
-          <div>
-            <h4>Carlos Mendoza</h4>
-            <span>Director de Tecnología - E-Commerce B2B</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"La estructuración de nuestra base de datos MongoDB y las automatizaciones con bots redujeron nuestros costos operativos manuales significativamente. Altamente recomendados."</p>
-        <div class="author-info">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Elena Rostova">
-          <div>
-            <h4>Elena Rostova</h4>
-            <span>VP de Operaciones - Logística Global</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="brands-banner">
-      <span class="brands-title">TECNOLOGÍAS & ESTÁNDARES ENTERPRISE</span>
-      <div class="brands-flex">
-        <span><i data-lucide="atom"></i> React</span>
-        <span><i data-lucide="server"></i> Node.js</span>
-        <span><i data-lucide="database"></i> MongoDB</span>
-        <span><i data-lucide="code"></i> Express</span>
-        <span><i data-lucide="shield"></i> Zero-Trust</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="faq-section">
-    <div class="section-header">
-      <span class="sub-title">Resolución de Dudas</span>
-      <h2>Preguntas Frecuentes</h2>
-    </div>
-
-    <div class="faq-accordion-container">
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>¿Cómo gestionan la propiedad intelectual del código fuente?</span>
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          <p>El 100% de la propiedad intelectual, repositorios de Git y documentación técnica son transferidos al cliente al finalizar el proyecto. No existen cláusulas de permanencia ni licencias ocultas.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>¿Por qué utilizan el stack React + Node.js + Express + MongoDB?</span>
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Es la arquitectura Fullstack moderna (MERN) de mayor rendimiento, flexibilidad y soporte de la industria. Permite escalar aplicaciones desde prototipos hasta millones de solicitudes concurrentes con mínima latencia.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>¿Qué incluye el soporte posdespliegue?</span>
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Todos nuestros desarrollos incluyen una garantía técnica de 90 días con monitoreo de rendimiento, corrección de incidentes y parches de seguridad sin costo adicional.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>¿Ofrecen integraciones con servicios o APIs de terceros?</span>
-          <i data-lucide="chevron-down" class="faq-icon"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Sí, desarrollamos middlewares a la medida para conectar pasarelas de pago, ERPs, CRMs, APIs de inteligencia artificial y bases de datos legacy de forma transparente y segura.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Metodología -->
-  <section id="metodologia" class="process-section">
-    <div class="section-header">
-      <span class="sub-title">Nuestro Proceso</span>
-      <h2>Cómo trabajamos con nuestros aliados</h2>
-    </div>
-
-    <div class="process-steps">
-      <div class="step-card">
-        <span class="step-number">01</span>
-        <h3>Diagnóstico & Arquitectura HTML/CSS</h3>
-        <p>Analizamos los requerimientos para diseñar interfaces semánticas, adaptables y con estándares modernos.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-number">02</span>
-        <h3>Lógica de Negocio & APIs con Node.js</h3>
-        <p>Estructuramos servidores backend con Express
+  <script src="main.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
