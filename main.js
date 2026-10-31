@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3500);
   }
 
-  // 1. CARGA DE SERVICIOS (Con respaldo directo en memoria)
-  async function cargarServicios() {
-    const serviciosPorDefecto = [
+  // 1. CARGA DE SERVICIOS DIRECTOS
+  function cargarServicios() {
+    serviciosData = [
       {
         id: 1,
         titulo: "Desarrollo Web & Software a Medida (React)",
@@ -102,16 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
 
-    const localData = localStorage.getItem("orion_servicios");
-    
-    if (localData) {
-      serviciosData = JSON.parse(localData);
-      filtrarYRenderizar();
-    } else {
-      serviciosData = serviciosPorDefecto;
-      guardarEnLocalStorage(serviciosData);
-      filtrarYRenderizar();
-    }
+    guardarEnLocalStorage(serviciosData);
+    filtrarYRenderizar();
   }
 
   function guardarEnLocalStorage(data) {
@@ -296,16 +288,322 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
 
-            ${servicio.retornoInversion ? `
-              <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); padding:0.9rem; border-radius:10px; margin-bottom:1.2rem;">
-                <strong style="color:#34D399; font-size:0.82rem; display:block; text-transform:uppercase; letter-spacing:1px;">Impacto & Retorno de Inversión (ROI)</strong>
-                <p style="color:#D1FAE5; font-size:0.9rem; margin-top:0.2rem;">${servicio.retornoInversion}</p>
-              </div>
-            ` : ''}
-
             <h4 class="detail-section-title">Entregables Clave</h4>
             ${entregablesHTML}
 
-            ${servicio.stackTecnologico ? `
-              <h4 class="detail-section-title">Stack Tecnológico Especializado</h4>
-              ${stackHTML
+            <div style="margin-top: 2rem;">
+              <button class="btn-primary btn-block btn-solicitar-modal" data-title="${servicio.titulo}">
+                Solicitar Cotización de este Servicio <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          `;
+
+          if (window.lucide) lucide.createIcons();
+          serviceDetailModal.classList.add("active");
+
+          document.querySelector(".btn-solicitar-modal").addEventListener("click", (evt) => {
+            const serviceTitle = evt.target.closest("button").getAttribute("data-title");
+            serviceDetailModal.classList.remove("active");
+
+            const selectEl = document.getElementById("formServicioSelect");
+            if (selectEl) {
+              for (let i = 0; i < selectEl.options.length; i++) {
+                if (selectEl.options[i].value.toLowerCase().includes(serviceTitle.toLowerCase().slice(0, 10))) {
+                  selectEl.selectedIndex = i;
+                  break;
+                }
+              }
+            }
+
+            mostrarToast("¡Servicio seleccionado para cotización!", "info");
+            const contactoSec = document.getElementById("contacto");
+            if (contactoSec) contactoSec.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      });
+    });
+  }
+
+  if (closeDetailBtn && serviceDetailModal) {
+    closeDetailBtn.addEventListener("click", () => serviceDetailModal.classList.remove("active"));
+    serviceDetailModal.addEventListener("click", (e) => {
+      if (e.target === serviceDetailModal) serviceDetailModal.classList.remove("active");
+    });
+  }
+
+  cargarServicios();
+
+  // 5. FORMULARIO CONTACTO
+  const form = document.getElementById("formularioContacto");
+  const status = document.getElementById("form-status");
+  const btnEnviar = document.getElementById("btnEnviar");
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (btnEnviar) btnEnviar.disabled = true;
+      status.className = "form-status-msg";
+      status.innerHTML = "Enviando tu solicitud...";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          status.className = "form-status-msg success";
+          status.innerHTML = "¡Excelente! Un consultor de Orion Digital Partners te contactará a la brevedad.";
+          mostrarToast("¡Mensaje enviado con éxito!", "success");
+          form.reset();
+        } else {
+          status.className = "form-status-msg error";
+          status.innerHTML = "No se pudo procesar la solicitud en este momento.";
+        }
+      } catch (error) {
+        status.className = "form-status-msg error";
+        status.innerHTML = "Error de conexión. Verifica tu acceso a internet.";
+      } finally {
+        if (btnEnviar) btnEnviar.disabled = false;
+      }
+    });
+  }
+
+  // 6. DASHBOARD ADMIN
+  const openLoginBtn = document.getElementById("openLoginBtn");
+  const closeLoginBtn = document.getElementById("closeLoginBtn");
+  const loginModal = document.getElementById("loginModal");
+  const loginForm = document.getElementById("loginForm");
+  const loginStatus = document.getElementById("loginStatus");
+  const adminLoginFormView = document.getElementById("adminLoginFormView");
+  const adminDashboardView = document.getElementById("adminDashboardView");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const addServiceForm = document.getElementById("addServiceForm");
+  const adminServicesContainer = document.getElementById("adminServicesContainer");
+  
+  const tabServiciosBtn = document.getElementById("tabServiciosBtn");
+  const tabLeadsBtn = document.getElementById("tabLeadsBtn");
+  const panelServiciosContent = document.getElementById("panelServiciosContent");
+  const panelLeadsContent = document.getElementById("panelLeadsContent");
+  const statCountServices = document.getElementById("statCountServices");
+
+  if (openLoginBtn && loginModal && closeLoginBtn) {
+    openLoginBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      loginModal.classList.add("active");
+    });
+    closeLoginBtn.addEventListener("click", () => loginModal.classList.remove("active"));
+  }
+
+  if (tabServiciosBtn && tabLeadsBtn) {
+    tabServiciosBtn.addEventListener("click", () => {
+      tabServiciosBtn.classList.add("active");
+      tabLeadsBtn.classList.remove("active");
+      panelServiciosContent.style.display = "block";
+      panelLeadsContent.style.display = "none";
+    });
+
+    tabLeadsBtn.addEventListener("click", () => {
+      tabLeadsBtn.classList.add("active");
+      tabServiciosBtn.classList.remove("active");
+      panelServiciosContent.style.display = "none";
+      panelLeadsContent.style.display = "block";
+    });
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+
+      if (user === "admin@orion.com" && pass === "orion2026") {
+        loginStatus.className = "form-status-msg success";
+        loginStatus.innerHTML = "Sesión iniciada correctamente.";
+        setTimeout(() => {
+          loginForm.reset();
+          loginStatus.innerHTML = "";
+          adminLoginFormView.style.display = "none";
+          adminDashboardView.style.display = "block";
+          mostrarToast("¡Bienvenido al Panel Admin!", "success");
+          renderizarListaAdmin();
+        }, 800);
+      } else {
+        loginStatus.className = "form-status-msg error";
+        loginStatus.innerHTML = "Credenciales inválidas. Usa admin@orion.com / orion2026";
+      }
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      adminDashboardView.style.display = "none";
+      adminLoginFormView.style.display = "block";
+      mostrarToast("Sesión cerrada correctamente", "info");
+    });
+  }
+
+  if (addServiceForm) {
+    addServiceForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const titulo = document.getElementById("newTitle").value.trim();
+      const categoria = document.getElementById("newCategory").value;
+      const icono = document.getElementById("newIcon").value;
+      const descripcion = document.getElementById("newDesc").value.trim();
+      const detallesRaw = document.getElementById("newDetails").value.trim();
+      const imagen = document.getElementById("newImg").value.trim();
+
+      const detalles = detallesRaw ? detallesRaw.split(",").map(d => d.trim()) : [];
+
+      const nuevoServicio = {
+        id: Date.now(),
+        titulo,
+        categoria,
+        icono,
+        imagen: imagen || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
+        descripcion,
+        detalles,
+        tiempoEstimado: "2 - 4 Semanas",
+        casosUso: "Solución corporativa personalizada.",
+        entregables: ["Desarrollo e integración completa", "Documentación técnica"]
+      };
+
+      serviciosData.push(nuevoServicio);
+      guardarEnLocalStorage(serviciosData);
+      filtrarYRenderizar();
+
+      addServiceForm.reset();
+      mostrarToast("¡Servicio publicado en el catálogo con éxito!", "success");
+    });
+  }
+
+  function renderizarListaAdmin() {
+    if (!adminServicesContainer) return;
+    adminServicesContainer.innerHTML = "";
+    if (statCountServices) statCountServices.textContent = `${serviciosData.length} Soluciones`;
+
+    serviciosData.forEach(servicio => {
+      const row = document.createElement("div");
+      row.className = "admin-item-row";
+      row.innerHTML = `
+        <span><strong>${servicio.titulo}</strong> (${servicio.categoria})</span>
+        <button class="btn-delete" data-id="${servicio.id}">Eliminar</button>
+      `;
+      adminServicesContainer.appendChild(row);
+    });
+
+    document.querySelectorAll(".btn-delete").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idToDelete = Number(e.target.getAttribute("data-id"));
+        serviciosData = serviciosData.filter(s => s.id !== idToDelete);
+        guardarEnLocalStorage(serviciosData);
+        filtrarYRenderizar();
+        mostrarToast("Servicio eliminado del catálogo", "info");
+      });
+    });
+  }
+
+  // 7. MOTOR DE IA PRO
+  const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
+  const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
+  const chatbotBox = document.getElementById("chatbotBox");
+  const chatbotForm = document.getElementById("chatbotForm");
+  const chatbotInput = document.getElementById("chatbotInput");
+  const chatbotMessages = document.getElementById("chatbotMessages");
+
+  if (chatbotToggleBtn && chatbotBox && chatbotCloseBtn) {
+    chatbotToggleBtn.addEventListener("click", () => chatbotBox.classList.toggle("active"));
+    chatbotCloseBtn.addEventListener("click", () => chatbotBox.classList.remove("active"));
+  }
+
+  document.querySelectorAll(".chip-btn").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const query = chip.getAttribute("data-query");
+      procesarEntradaChat(query);
+    });
+  });
+
+  if (chatbotForm) {
+    chatbotForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userText = chatbotInput.value.trim();
+      if (!userText) return;
+      procesarEntradaChat(userText);
+      chatbotInput.value = "";
+    });
+  }
+
+  function procesarEntradaChat(texto) {
+    appendMessage(texto, "user-msg");
+    
+    const typingId = "typing_" + Date.now();
+    appendMessage("Pensando respuesta técnica...", "bot-msg", typingId);
+
+    setTimeout(() => {
+      const typingEl = document.getElementById(typingId);
+      if (typingEl) typingEl.remove();
+      
+      const respuestaIA = generarRespuestaIAPro(texto);
+      appendMessage(respuestaIA, "bot-msg");
+    }, 800);
+  }
+
+  function appendMessage(text, className, customId = "") {
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `chat-msg ${className}`;
+    if (customId) msgDiv.id = customId;
+    msgDiv.innerHTML = `<p>${text}</p>`;
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function generarRespuestaIAPro(consulta) {
+    const q = consulta.toLowerCase();
+
+    if (q.includes("api") || q.includes("fetch") || q.includes("axios")) {
+      return `Para consumir **APIs RESTful en React** de forma óptima, utilizamos el Hook <code>useEffect</code> junto con <code>async/await</code> dentro de <code>fetch</code> o Axios:
+      <pre><code>useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://api.ejemplo.com/data');
+      const data = await res.json();
+      setData(data);
+    } catch (error) {
+      console.error("Error al consumir API", error);
+    }
+  };
+  fetchData();
+}, []);</code></pre>`;
+    } 
+    else if (q.includes("node") || q.includes("express") || q.includes("backend")) {
+      return `En el backend desarrollamos servidores robustos con **Node.js y Express**. Estructuramos rutas y controladores limpios:
+      <pre><code>const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.get('/api/servicios', (req, res) => {
+  res.json({ status: 'success', data: [] });
+});
+
+app.listen(5000, () => console.log('Servidor corriendo en puerto 5000'));</code></pre>`;
+    } 
+    else if (q.includes("mongo") || q.includes("base de datos") || q.includes("crud")) {
+      return `Para la persistencia con **MongoDB y Mongoose**, definimos esquemas tipados y ejecutamos operaciones CRUD asíncronas de alto rendimiento:
+      <pre><code>const ServiceSchema = new mongoose.Schema({
+  titulo: { type: String, required: true },
+  categoria: String,
+  activo: { type: Boolean, default: true }
+});
+const Service = mongoose.model('Service', ServiceSchema);</code></pre>`;
+    } 
+    else if (q.includes("hook") || q.includes("usestate") || q.includes("useeffect")) {
+      return `Los **React Hooks** permiten gestionar estado y ciclos de vida sin clases. El <code>useState</code> controla el estado reactivo y <code>useEffect</code> maneja efectos secundarios como llamadas a APIs o suscripciones.`;
+    } 
+    else {
+      return `En **Orion Digital Partners** diseñamos arquitecturas MERN completas (MongoDB, Express, React, Node.js). ¿Te gustaría profundizar en algún componente de Frontend, integración de APIs o seguridad Backend?`;
+    }
+  }
+
+});
