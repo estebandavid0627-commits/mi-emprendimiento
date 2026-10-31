@@ -39,7 +39,13 @@ body {
 .bg-glow-1 { top: -100px; left: 15%; background: var(--primary-accent); }
 .bg-glow-2 { top: 600px; right: 10%; background: var(--purple-accent); }
 
-/* CONTENEDOR DE TOASTS */
+/* SCROLLBAR PERSONALIZADO */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #090D16; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+
+/* NOTIFICACIONES TOAST */
 .toast-container {
   position: fixed;
   top: 5rem;
@@ -74,15 +80,8 @@ body {
   transform: translateY(0);
 }
 
-.toast-notification.success {
-  border-color: rgba(52, 211, 153, 0.4);
-  color: #34D399;
-}
-
-.toast-notification.info {
-  border-color: rgba(96, 165, 250, 0.4);
-  color: #60A5FA;
-}
+.toast-notification.success { border-color: rgba(52, 211, 153, 0.4); color: #34D399; }
+.toast-notification.info { border-color: rgba(96, 165, 250, 0.4); color: #60A5FA; }
 
 /* NAVBAR */
 .navbar {
@@ -226,9 +225,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
 
 /* METRICAS */
 .stats-section {
@@ -289,7 +286,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* BUSCADOR DE SERVICIOS */
+/* BUSCADOR */
 .search-box-container {
   position: relative;
   max-width: 550px;
@@ -339,6 +336,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  will-change: transform, box-shadow;
 }
 
 .glass-card:hover, .step-card:hover, .testimonial-card:hover {
@@ -401,12 +399,19 @@ body {
 
 .card-footer-link:hover { color: #93C5FD; }
 
-/* COTIZADOR */
+/* COTIZADOR CON EFECTO GLOW ANIMADO */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(37, 99, 235, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(124, 58, 237, 0.4); }
+  100% { box-shadow: 0 0 10px rgba(37, 99, 235, 0.2); }
+}
+
 .calculator-box {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
   border: 1px solid var(--border-card);
   border-radius: 24px;
   padding: 3rem 2.5rem;
+  animation: glowPulse 6s infinite ease-in-out;
 }
 
 .calc-grid {
@@ -458,7 +463,7 @@ body {
 
 .calc-result-item p { font-size: 1.1rem; font-weight: 700; color: #fff; margin-top: 0.2rem; }
 
-/* TESTIMONIOS */
+/* TESTIMONIOS Y MARCAS */
 .testimonial-card {
   padding: 2rem;
   display: flex;
@@ -549,9 +554,7 @@ body {
   transition: border-color 0.3s ease;
 }
 
-.faq-item.active {
-  border-color: rgba(96, 165, 250, 0.4);
-}
+.faq-item.active { border-color: rgba(96, 165, 250, 0.4); }
 
 .faq-question {
   width: 100%;
@@ -569,14 +572,8 @@ body {
   cursor: pointer;
 }
 
-.faq-icon {
-  transition: transform 0.3s ease;
-  color: #60A5FA;
-}
-
-.faq-item.active .faq-icon {
-  transform: rotate(180deg);
-}
+.faq-icon { transition: transform 0.3s ease; color: #60A5FA; }
+.faq-item.active .faq-icon { transform: rotate(180deg); }
 
 .faq-answer {
   max-height: 0;
@@ -596,7 +593,7 @@ body {
   line-height: 1.6;
 }
 
-/* FILTROS DE CATEGORÍA */
+/* FILTROS */
 .filter-container {
   display: flex;
   justify-content: center;
@@ -657,17 +654,8 @@ body {
   text-align: center;
 }
 
-.cta-box h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.cta-box p {
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
+.cta-box h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+.cta-box p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
 
 .cta-form {
   display: flex;
@@ -700,10 +688,7 @@ body {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-select option {
-  background-color: #090D16;
-  color: #fff;
-}
+.form-select option { background-color: #090D16; color: #fff; }
 
 .cta-form input:focus, 
 .form-select:focus, 
@@ -714,27 +699,10 @@ body {
   box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
 }
 
-.btn-block {
-  width: 100%;
-  justify-content: center;
-  padding: 0.9rem;
-}
+.btn-block { width: 100%; justify-content: center; padding: 0.9rem; }
+.btn-small { padding: 0.4rem 0.8rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
 
-.btn-small {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
-}
-
-.form-status-msg {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-top: 0.5rem;
-}
-
+.form-status-msg { font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; }
 .form-status-msg.success { color: #34D399; }
 .form-status-msg.error { color: #F87171; }
 
@@ -746,7 +714,7 @@ body {
   font-size: 0.85rem;
 }
 
-/* MODALES */
+/* MODALES & ADMIN */
 .login-link {
   color: var(--text-secondary);
   font-size: 0.85rem;
@@ -776,10 +744,7 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
 
 .modal-card {
   background: #0D121F;
@@ -796,11 +761,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-.modal-card.modal-large {
-  max-width: 680px;
-  padding: 2.5rem;
-}
-
+.modal-card.modal-large { max-width: 680px; padding: 2.5rem; }
 .modal-overlay.active .modal-card { transform: translateY(0); }
 
 .close-modal {
@@ -843,27 +804,12 @@ body {
   border: 1px solid var(--border-card);
   padding: 1rem;
   border-radius: 10px;
-  margin: 1.2rem 0;
 }
 
-.detail-meta-item strong {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
+.detail-meta-item strong { display: block; font-size: 0.8rem; color: var(--text-secondary); }
+.detail-meta-item span { font-size: 0.95rem; color: #fff; font-weight: 600; }
 
-.detail-meta-item span {
-  font-size: 0.95rem;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* CRUD ADMIN */
-.admin-header-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.admin-header-flex { display: flex; justify-content: space-between; align-items: center; }
 
 .admin-crud-form {
   background: rgba(255, 255, 255, 0.02);
@@ -883,7 +829,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
 }
 
@@ -970,13 +916,7 @@ body {
   align-items: center;
 }
 
-.chatbot-title {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: #60A5FA;
-}
-
+.chatbot-title { display: flex; align-items: center; gap: 0.8rem; color: #60A5FA; }
 .chatbot-title h4 { font-size: 0.95rem; color: #fff; font-weight: 700; }
 .online-status { font-size: 0.75rem; color: #34D399; display: block; }
 

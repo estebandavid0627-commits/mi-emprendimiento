@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let serviciosData = [];
   let categoriaActual = "Todos";
 
-  // SISTEMA GLOBAL DE TOASTS
+  // NOTIFICACIONES TOAST DÁNAMICAS
   function mostrarToast(mensaje, tipo = "success") {
     if (!toastContainer) return;
     const toast = document.createElement("div");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3500);
   }
 
-  // 1. CARGA Y RENDERIZADO DE SERVICIOS
+  // 1. CARGA Y FILTRADO DE SERVICIOS
   async function cargarServicios() {
     const localData = localStorage.getItem("orion_servicios");
     
@@ -120,14 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      filterButtons.forEach(b => b.classList.remove("active"));
+      if (btn.id === "tabServiciosBtn" || btn.id === "tabLeadsBtn") return; // Ignorar pestañas admin
+      filterButtons.forEach(b => {
+        if (b.id !== "tabServiciosBtn" && b.id !== "tabLeadsBtn") b.classList.remove("active");
+      });
       btn.classList.add("active");
       categoriaActual = btn.getAttribute("data-category");
       filtrarYRenderizar();
     });
   });
 
-  // 2. COTIZADOR INTERACTIVO EN TIEMPO REAL
+  // 2. COTIZADOR INTERACTIVO
   const calcTipo = document.getElementById("calcTipo");
   const calcComplejidad = document.getElementById("calcComplejidad");
   const calcUrgencia = document.getElementById("calcUrgencia");
@@ -174,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. FAQ ACORDEÓN INTERACTIVO
+  // 3. FAQ ACORDEÓN
   const faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -189,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 4. MODAL DE DETALLE ENRIQUECIDO
+  // 4. MODAL DETALLE
   const serviceDetailModal = document.getElementById("serviceDetailModal");
   const closeDetailBtn = document.getElementById("closeDetailBtn");
   const serviceDetailContent = document.getElementById("serviceDetailContent");
@@ -286,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cargarServicios();
 
-  // 5. FORMULARIO DE CONTACTO
+  // 5. FORMULARIO CONTACTO
   const form = document.getElementById("formularioContacto");
   const status = document.getElementById("form-status");
   const btnEnviar = document.getElementById("btnEnviar");
@@ -323,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 6. PANEL ADMINISTRATIVO (CRUD + LOCALSTORAGE)
+  // 6. DASHBOARD ADMIN (PANEL CON PESTAÑAS Y CRUD)
   const openLoginBtn = document.getElementById("openLoginBtn");
   const closeLoginBtn = document.getElementById("closeLoginBtn");
   const loginModal = document.getElementById("loginModal");
@@ -334,6 +337,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const addServiceForm = document.getElementById("addServiceForm");
   const adminServicesContainer = document.getElementById("adminServicesContainer");
+  
+  const tabServiciosBtn = document.getElementById("tabServiciosBtn");
+  const tabLeadsBtn = document.getElementById("tabLeadsBtn");
+  const panelServiciosContent = document.getElementById("panelServiciosContent");
+  const panelLeadsContent = document.getElementById("panelLeadsContent");
+  const statCountServices = document.getElementById("statCountServices");
 
   if (openLoginBtn && loginModal && closeLoginBtn) {
     openLoginBtn.addEventListener("click", (e) => {
@@ -341,6 +350,23 @@ document.addEventListener("DOMContentLoaded", () => {
       loginModal.classList.add("active");
     });
     closeLoginBtn.addEventListener("click", () => loginModal.classList.remove("active"));
+  }
+
+  // Cambio de pestañas en Admin
+  if (tabServiciosBtn && tabLeadsBtn) {
+    tabServiciosBtn.addEventListener("click", () => {
+      tabServiciosBtn.classList.add("active");
+      tabLeadsBtn.classList.remove("active");
+      panelServiciosContent.style.display = "block";
+      panelLeadsContent.style.display = "none";
+    });
+
+    tabLeadsBtn.addEventListener("click", () => {
+      tabLeadsBtn.classList.add("active");
+      tabServiciosBtn.classList.remove("active");
+      panelServiciosContent.style.display = "none";
+      panelLeadsContent.style.display = "block";
+    });
   }
 
   if (loginForm) {
@@ -413,6 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderizarListaAdmin() {
     if (!adminServicesContainer) return;
     adminServicesContainer.innerHTML = "";
+    if (statCountServices) statCountServices.textContent = `${serviciosData.length} Soluciones`;
 
     serviciosData.forEach(servicio => {
       const row = document.createElement("div");
@@ -435,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 7. CHATBOT CON IA POTENCIADO Y CHIPS DE PREGUNTAS RÁPIDAS
+  // 7. CHATBOT IA ADVISOR
   const chatbotToggleBtn = document.getElementById("chatbotToggleBtn");
   const chatbotCloseBtn = document.getElementById("chatbotCloseBtn");
   const chatbotBox = document.getElementById("chatbotBox");

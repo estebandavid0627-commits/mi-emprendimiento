@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orion Digital Partners | Consultoría & Soluciones Digitales</title>
   
-  <!-- Fuente Profesional Google Fonts (Plus Jakarta Sans) -->
+  <!-- Fuente Google Fonts (Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -17,11 +17,11 @@
 </head>
 <body>
 
-  <!-- Luces de fondo (Glow Effects) -->
+  <!-- Luces de fondo -->
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
 
-  <!-- Contenedor de Alertas Toast Flotantes -->
+  <!-- Contenedor de Notificaciones Toast Flotantes -->
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Navbar Glassmorphism -->
@@ -83,7 +83,7 @@
     </div>
   </section>
 
-  <!-- Catálogo Dinámico de Servicios (DOM + JSON) -->
+  <!-- Catálogo Dinámico de Servicios (Buscador + Filtros) -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
@@ -95,7 +95,7 @@
         <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. React, Node, MongoDB, IA...)" class="search-input">
       </div>
 
-      <!-- Filtros de Categorías Dinámicos -->
+      <!-- Filtros de Categorías -->
       <div class="filter-container">
         <button class="filter-btn active" data-category="Todos">Todos</button>
         <button class="filter-btn" data-category="Desarrollo">Desarrollo</button>
@@ -105,11 +105,10 @@
       </div>
     </div>
 
-    <!-- Las tarjetas se insertarán dinámicamente -->
     <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
-  <!-- COTIZADOR INTERACTIVO EN TIEMPO REAL -->
+  <!-- Cotizador Interactivo -->
   <section id="cotizador" class="calculator-section">
     <div class="section-header">
       <span class="sub-title">Calculadora de Proyectos</span>
@@ -167,7 +166,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIOS Y MARCAS ALIADAS -->
+  <!-- Testimonios y Marcas -->
   <section id="testimonios" class="testimonials-section">
     <div class="section-header">
       <span class="sub-title">Casos de Éxito</span>
@@ -224,7 +223,7 @@
     </div>
   </section>
 
-  <!-- PREGUNTAS FRECUENTES (FAQ ACORDEÓN) -->
+  <!-- Preguntas Frecuentes (FAQ Acordeón) -->
   <section id="faq" class="faq-section">
     <div class="section-header">
       <span class="sub-title">Resolución de Dudas</span>
@@ -274,7 +273,7 @@
     </div>
   </section>
 
-  <!-- Metodología de Trabajo -->
+  <!-- Metodología -->
   <section id="metodologia" class="process-section">
     <div class="section-header">
       <span class="sub-title">Nuestro Proceso</span>
@@ -340,7 +339,7 @@
     <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- MODAL DE DETALLE DEL SERVICIO -->
+  <!-- Modal Detalle del Servicio -->
   <div id="serviceDetailModal" class="modal-overlay">
     <div class="modal-card modal-large">
       <button id="closeDetailBtn" class="close-modal">&times;</button>
@@ -348,7 +347,7 @@
     </div>
   </div>
 
-  <!-- Modal de Login / Panel Admin (CRUD) -->
+  <!-- Modal Admin Dashboard Completo -->
   <div id="loginModal" class="modal-overlay">
     <div class="modal-card" id="modalCard">
       <button id="closeLoginBtn" class="close-modal">&times;</button>
@@ -369,55 +368,100 @@
         </form>
       </div>
 
-      <!-- VISTA 2: PANEL CRUD -->
+      <!-- VISTA 2: PANEL DASHBOARD EXPANDIDO CON PESTAÑAS (LEADS Y SERVICIOS) -->
       <div id="adminDashboardView" style="display: none;">
         <div class="modal-header">
           <div class="admin-header-flex">
             <div>
               <span class="sub-title">Consola de Control</span>
-              <h2>Gestión de Servicios</h2>
+              <h2>Panel de Administración</h2>
             </div>
             <button id="logoutBtn" class="btn-secondary btn-small"><i data-lucide="log-out"></i> Salir</button>
           </div>
         </div>
 
-        <form id="addServiceForm" class="admin-crud-form">
-          <h4>Agregar Nuevo Servicio</h4>
-          <input type="text" id="newTitle" placeholder="Título del servicio" required>
-          
-          <div class="form-group-grid">
-            <select id="newCategory" class="form-select" required>
-              <option value="Desarrollo">Desarrollo</option>
-              <option value="Estrategia">Estrategia</option>
-              <option value="Automatización">Automatización</option>
-              <option value="Seguridad">Seguridad</option>
-            </select>
-            <select id="newIcon" class="form-select" required>
-              <option value="code-2">Icono: Código (code-2)</option>
-              <option value="bar-chart-3">Icono: Datos (bar-chart-3)</option>
-              <option value="cpu">Icono: Automatización (cpu)</option>
-              <option value="shield-check">Icono: Seguridad (shield-check)</option>
-              <option value="layers">Icono: Capas (layers)</option>
-            </select>
+        <!-- Métricas Rápidas en Dashboard -->
+        <div class="detail-meta-grid" style="margin: 1.2rem 0;">
+          <div class="detail-meta-item">
+            <strong>Servicios Activos</strong>
+            <span id="statCountServices">0 Soluciones</span>
           </div>
-
-          <textarea id="newDesc" rows="2" placeholder="Descripción breve..." required></textarea>
-          <input type="text" id="newDetails" placeholder="Detalles (separados por coma)">
-          <input type="url" id="newImg" placeholder="URL de Imagen opcional (HTTPS)">
-          
-          <button type="submit" class="btn-primary btn-block"><i data-lucide="plus-circle"></i> Guardar Servicio</button>
-        </form>
-
-        <div class="admin-services-list">
-          <h4>Servicios Publicados</h4>
-          <div id="adminServicesContainer" class="admin-items-scroll"></div>
+          <div class="detail-meta-item">
+            <strong>Prospectos Recibidos</strong>
+            <span>2 Consultas Nuevas</span>
+          </div>
         </div>
+
+        <!-- Pestañas de Navegación del Admin -->
+        <div style="display: flex; gap: 0.8rem; margin-bottom: 1.2rem;">
+          <button id="tabServiciosBtn" class="filter-btn active">Gestión de Servicios</button>
+          <button id="tabLeadsBtn" class="filter-btn">Leads de Contacto (2)</button>
+        </div>
+
+        <!-- SECCIÓN PESTAÑA 1: CRUD SERVICIOS -->
+        <div id="panelServiciosContent">
+          <form id="addServiceForm" class="admin-crud-form">
+            <h4>Agregar Nuevo Servicio</h4>
+            <input type="text" id="newTitle" placeholder="Título del servicio" required>
+            
+            <div class="form-group-grid">
+              <select id="newCategory" class="form-select" required>
+                <option value="Desarrollo">Desarrollo</option>
+                <option value="Estrategia">Estrategia</option>
+                <option value="Automatización">Automatización</option>
+                <option value="Seguridad">Seguridad</option>
+              </select>
+              <select id="newIcon" class="form-select" required>
+                <option value="code-2">Icono: Código (code-2)</option>
+                <option value="bar-chart-3">Icono: Datos (bar-chart-3)</option>
+                <option value="cpu">Icono: Automatización (cpu)</option>
+                <option value="shield-check">Icono: Seguridad (shield-check)</option>
+                <option value="layers">Icono: Capas (layers)</option>
+              </select>
+            </div>
+
+            <textarea id="newDesc" rows="2" placeholder="Descripción breve..." required></textarea>
+            <input type="text" id="newDetails" placeholder="Detalles (separados por coma)">
+            <input type="url" id="newImg" placeholder="URL de Imagen opcional (HTTPS)">
+            
+            <button type="submit" class="btn-primary btn-block"><i data-lucide="plus-circle"></i> Guardar Servicio</button>
+          </form>
+
+          <div class="admin-services-list">
+            <h4>Servicios Publicados</h4>
+            <div id="adminServicesContainer" class="admin-items-scroll"></div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN PESTAÑA 2: LEADS REGISTRADOS -->
+        <div id="panelLeadsContent" style="display: none;">
+          <div class="admin-services-list">
+            <h4>Solicitudes de Cotización Recientes</h4>
+            <div class="admin-items-scroll">
+              <div class="admin-item-row">
+                <div>
+                  <strong>TechCorp S.A.</strong> (contacto@techcorp.com)
+                  <p style="font-size: 0.78rem; color: var(--text-secondary);">Interés: Sistema Fullstack (React + Node)</p>
+                </div>
+                <span style="font-size: 0.75rem; color: #60A5FA;">Hoy</span>
+              </div>
+              <div class="admin-item-row">
+                <div>
+                  <strong>Logística Global</strong> (operaciones@logistica.co)
+                  <p style="font-size: 0.78rem; color: var(--text-secondary);">Interés: Bot RPA / Automatización</p>
+                </div>
+                <span style="font-size: 0.75rem; color: #60A5FA;">Ayer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </div>
 
-  <!-- WIDGET CHATBOT DE IA CON CHIPS -->
+  <!-- Widget Chatbot IA Advisor -->
   <div class="chatbot-wrapper">
     <button id="chatbotToggleBtn" class="chatbot-toggle-btn" aria-label="Abrir Asistente Virtual">
       <i data-lucide="bot"></i>
