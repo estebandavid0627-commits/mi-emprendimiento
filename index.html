@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orion Digital Partners - Socio tecnológico integral en ingeniería de software MERN (React, Node.js, Express, MongoDB), automatización RPA y ciberseguridad.">
+  <meta name="keywords" content="React, Node.js, MongoDB, Express, Software a Medida, RPA, Ciberseguridad, Colombia">
   <title>Orion Digital Partners | Consultoría & Soluciones Digitales</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +20,7 @@
   <div class="bg-glow bg-glow-2"></div>
   <div id="toastContainer" class="toast-container"></div>
 
+  <!-- HEADER CORPORATIVO -->
   <header class="navbar">
     <div class="nav-container">
       <a href="#" class="brand-logo"><span class="logo-accent">Orion</span> Partners</a>
@@ -27,45 +30,292 @@
         <a href="#testimonios">Testimonios</a>
         <a href="#faq">FAQ</a>
         <a href="#contacto" class="btn-nav">Agendar Diagnóstico</a>
+        <a href="#" id="openLoginBtn" class="admin-link">Admin</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO SECTION CON CTA -->
   <section class="hero-section">
     <div class="hero-content">
-      <span class="badge-pill">Consultoría & Ingeniería Fullstack</span>
+      <span class="badge-pill">Consultoría & Ingeniería Fullstack MERN</span>
       <h1 class="hero-title">Construimos la infraestructura para tu <span class="gradient-text">próximo gran salto</span></h1>
-      <p class="hero-subtitle">Soluciones Fullstack sofisticadas con React, Node.js, Express y MongoDB.</p>
+      <p class="hero-subtitle">Socio tecnológico en ingeniería de software, desarrollo escalable con React & Node.js, ciberdefensa y automatización inteligente de procesos.</p>
+      <div class="hero-cta-group">
+        <a href="#soluciones" class="btn-primary">Explorar Soluciones <i data-lucide="arrow-right"></i></a>
+        <a href="#cotizador" class="btn-secondary">Estimar Proyecto</a>
+      </div>
     </div>
   </section>
 
-  <!-- SECCIÓN DE SERVICIOS -->
+  <!-- SECCIÓN DE MARCAS Y PRUEBA SOCIAL -->
+  <section class="trust-bar">
+    <p class="trust-title">TECNOLOGÍAS Y ESTÁNDARES ENTERPRISE</p>
+    <div class="tech-logos">
+      <span><i data-lucide="code-2"></i> React.js</span>
+      <span><i data-lucide="server"></i> Node.js</span>
+      <span><i data-lucide="database"></i> MongoDB</span>
+      <span><i data-lucide="shield-check"></i> SSL Zero-Trust</span>
+      <span><i data-lucide="cpu"></i> RPA Bots</span>
+    </div>
+  </section>
+
+  <!-- CATALOGO DE SERVICIOS -->
   <section id="soluciones" class="services-section">
     <div class="section-header">
       <span class="sub-title">Áreas de Especialización</span>
       <h2>Soluciones diseñadas para escala global</h2>
       
       <div class="search-box-container">
-        <input type="text" id="searchInput" placeholder="Buscar solución..." class="search-input">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. React, Node, MongoDB, IA...)" class="search-input">
       </div>
 
       <div class="filter-container">
         <button class="filter-btn active" data-category="Todos">Todos</button>
         <button class="filter-btn" data-category="Desarrollo">Desarrollo</button>
+        <button class="filter-btn" data-category="Estrategia">Estrategia</button>
         <button class="filter-btn" data-category="Automatización">Automatización</button>
         <button class="filter-btn" data-category="Seguridad">Seguridad</button>
       </div>
     </div>
 
-    <!-- Contenedor donde se inyectarán las tarjetas -->
     <div class="cards-grid" id="serviciosContainer"></div>
   </section>
 
+  <!-- COTIZADOR INTERACTIVO -->
+  <section id="cotizador" class="calculator-section">
+    <div class="section-header">
+      <span class="sub-title">Calculadora de Proyectos</span>
+      <h2>Estima la inversión de tu software</h2>
+      <p>Configura los parámetros de tu solución digital y obtén una estimación de tiempo y costo orientativa.</p>
+    </div>
+
+    <div class="calc-card glass-card">
+      <div class="calc-grid">
+        <div class="calc-group">
+          <label for="calcTipo">Tipo de Solución</label>
+          <select id="calcTipo" class="calc-select">
+            <option value="1200">Aplicación Web React / SPA ($1,200 USD)</option>
+            <option value="2500">Backend API REST + Node.js + MongoDB ($2,500 USD)</option>
+            <option value="3800">Plataforma Fullstack MERN Completa ($3,800 USD)</option>
+            <option value="1800">Automatización RPA / Bot Empresarial ($1,800 USD)</option>
+          </select>
+        </div>
+
+        <div class="calc-group">
+          <label for="calcComplejidad">Escala & Arquitectura</label>
+          <select id="calcComplejidad" class="calc-select">
+            <option value="1">Estándar (Módulos base y CRUD)</option>
+            <option value="1.4">Avanzada (Integración de APIs e IA)</option>
+            <option value="1.8">Enterprise (Alta concurrencia y Microservicios)</option>
+          </select>
+        </div>
+
+        <div class="calc-group">
+          <label for="calcUrgencia">Prioridad de Despliegue</label>
+          <select id="calcUrgencia" class="calc-select">
+            <option value="1">Estándar (4 - 8 Semanas)</option>
+            <option value="1.3">Prioritaria (2 - 4 Semanas)</option>
+            <option value="0.9">Planificada (8 - 12 Semanas)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-result-box">
+        <div>
+          <span class="result-label">Estimación Aproximada:</span>
+          <h3 id="calcTotal" class="result-price">$0 USD</h3>
+        </div>
+        <div>
+          <span class="result-label">Tiempo Estimado:</span>
+          <p id="calcTiempo" class="result-time">4 - 8 Semanas</p>
+        </div>
+        <button id="btnLlevarAlFormulario" class="btn-primary">Transferir Cotización a Formulario <i data-lucide="arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS Y PRUEBA SOCIAL -->
+  <section id="testimonios" class="testimonials-section">
+    <div class="section-header">
+      <span class="sub-title">Casos de Éxito</span>
+      <h2>Lo que dicen nuestros socios estratégicos</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="glass-card testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Orion Digital Partners transformó nuestra infraestructura con una arquitectura MERN que redujo los tiempos de respuesta de nuestra API en un 60%."</p>
+        <div class="author-info">
+          <strong>Carlos Mendoza</strong>
+          <span>CTO - TechLogistics SaaS</span>
+        </div>
+      </div>
+      <div class="glass-card testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"La automatización de procesos RPA implementada por el equipo eliminó más de 40 horas mensuales de carga operativa manual en finanzas."</p>
+        <div class="author-info">
+          <strong>Elena Rostova</strong>
+          <span>Directora de Operaciones - Fintech Group</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+  <section id="faq" class="faq-section">
+    <div class="section-header">
+      <span class="sub-title">Resolvemos tus dudas</span>
+      <h2>Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">¿Por qué utilizar el stack MERN para mi proyecto? <i data-lucide="chevron-down"></i></button>
+        <div class="faq-answer">
+          <p>El stack MERN (MongoDB, Express, React, Node.js) permite construir aplicaciones dinámicas de punta a punta utilizando un único lenguaje (JavaScript/TypeScript), garantizando alto rendimiento, escalabilidad horizontal y un mantenimiento ágil.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Cómo aseguran la velocidad y seguridad de la aplicación? <i data-lucide="chevron-down"></i></button>
+        <div class="faq-answer">
+          <p>Implementamos arquitecturas de seguridad bajo el principio Zero-Trust, encriptación SSL en tránsito y reposo, y optimizaciones de carga para asegurar métricas por debajo de los 3 segundos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE CONTACTO -->
+  <section id="contacto" class="contact-section">
+    <div class="section-header">
+      <span class="sub-title">Contacto Directo</span>
+      <h2>Hablemos de tu próximo proyecto</h2>
+    </div>
+
+    <div class="contact-container glass-card">
+      <form id="formularioContacto" action="https://formspree.io/f/xnqeenbe" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Luis Pájaro">
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Corporativo</label>
+          <input type="email" id="email" name="email" required placeholder="ejemplo@empresa.com">
+        </div>
+        <div class="form-group">
+          <label for="formServicioSelect">Servicio de Interés</label>
+          <select id="formServicioSelect" name="servicio" class="calc-select">
+            <option value="Consultoría General">Consultoría General MERN</option>
+            <option value="Desarrollo React">Desarrollo Web React</option>
+            <option value="Backend Node.js">Backend Node.js & APIs</option>
+            <option value="Automatización RPA">Automatización RPA</option>
+            <option value="Cotizador Interactivo Web">Estimación de Cotizador</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="formMensaje">Detalles del Proyecto</label>
+          <textarea id="formMensaje" name="mensaje" rows="4" required placeholder="Describe brevemente tus requerimientos técnicos..."></textarea>
+        </div>
+        <button type="submit" id="btnEnviar" class="btn-primary btn-block">Enviar Solicitud <i data-lucide="send"></i></button>
+        <div id="form-status" class="form-status-msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- MODAL DE DETALLES DE SERVICIO -->
+  <div id="serviceDetailModal" class="modal-overlay">
+    <div class="modal-content glass-card">
+      <button id="closeDetailBtn" class="close-modal-btn">&times;</button>
+      <div id="serviceDetailContent"></div>
+    </div>
+  </div>
+
+  <!-- MODAL Y PANEL DE ADMINISTRACIÓN -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal-content glass-card admin-modal-content">
+      <button id="closeLoginBtn" class="close-modal-btn">&times;</button>
+      
+      <div id="adminLoginFormView">
+        <h3>Acceso Administrativo</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Gestión interna de catálogo Orion Partners</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="adminUser">Usuario</label>
+            <input type="text" id="adminUser" placeholder="admin@orion.com" required>
+          </div>
+          <div class="form-group">
+            <label for="adminPass">Contraseña</label>
+            <input type="password" id="adminPass" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-primary btn-block">Ingresar al Panel</button>
+          <div id="loginStatus" class="form-status-msg"></div>
+        </form>
+      </div>
+
+      <div id="adminDashboardView" style="display: none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
+          <h3>Panel de Control Orion</h3>
+          <button id="logoutBtn" class="btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.8rem;">Cerrar Sesión</button>
+        </div>
+        
+        <div class="admin-tabs">
+          <button id="tabServiciosBtn" class="filter-btn active">Gestión de Catálogo</button>
+          <button id="tabLeadsBtn" class="filter-btn">Soluciones Activas (<span id="statCountServices">0</span>)</button>
+        </div>
+
+        <div id="panelServiciosContent" style="margin-top: 1rem;">
+          <form id="addServiceForm" style="display:grid; gap:0.8rem; margin-bottom:1.5rem;">
+            <input type="text" id="newTitle" placeholder="Título del nuevo servicio" required class="search-input">
+            <select id="newCategory" class="calc-select">
+              <option value="Desarrollo">Desarrollo</option>
+              <option value="Estrategia">Estrategia</option>
+              <option value="Automatización">Automatización</option>
+              <option value="Seguridad">Seguridad</option>
+            </select>
+            <input type="text" id="newIcon" placeholder="Icono Lucide (code-2, server, database...)" value="code-2" class="search-input">
+            <input type="text" id="newImg" placeholder="URL de la Imagen Banner" class="search-input">
+            <textarea id="newDesc" placeholder="Descripción corporativa" required class="search-input" rows="2"></textarea>
+            <input type="text" id="newDetails" placeholder="Detalles clave (separados por coma)" class="search-input">
+            <button type="submit" class="btn-primary">Publicar Servicio</button>
+          </form>
+          <h4>Servicios Actualmente Visibles</h4>
+          <div id="adminServicesContainer" class="admin-list"></div>
+        </div>
+
+        <div id="panelLeadsContent" style="display:none; margin-top: 1rem;">
+          <p style="color:var(--text-secondary); font-size:0.9rem;">Los registros de solicitudes enviadas desde el formulario de contacto se sincronizan con Formspree / Backend API.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer class="main-footer">
-    <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4><span class="logo-accent">Orion</span> Partners</h4>
+        <p>Socio tecnológico integral en desarrollo MERN, ciberseguridad defensiva y automatización de procesos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <a href="#soluciones">Desarrollo React</a>
+        <a href="#soluciones">APIs Node.js</a>
+        <a href="#soluciones">Bases de Datos MongoDB</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal & Seguridad</h4>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos del Servicio</a>
+        <a href="#">Protocolo SSL Zero-Trust</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Orion Digital Partners. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
   <script src="main.js"></script>
-  <script>lucide.createIcons();</script>
 </body>
 </html>
